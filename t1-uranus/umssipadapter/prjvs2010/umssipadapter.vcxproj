@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\adaptercfg.h" />
+    <ClInclude Include="..\include\umsdataconvet.h" />
+    <ClInclude Include="..\include\umssipadapterinst.h" />
+    <ClInclude Include="..\include\umssipmcudef.h" />
+    <ClInclude Include="..\include\umsstackinterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\adaptercfg.cpp" />
+    <ClCompile Include="..\source\umsdataconvet.cpp" />
+    <ClCompile Include="..\source\umssipadapterinst.cpp" />
+    <ClCompile Include="..\source\umssipadaptermain.cpp" />
+    <ClCompile Include="..\source\umsstackinterface.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C61E8246-43AF-41C5-9AB1-7E91C8C374B1}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>umssipadapter</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <EmbedManifest>false</EmbedManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_USE_LOG4CPLUS_;WIN32;_ENABLE_QUANTUM_PROJECT_;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp;..\..\..\10-common\include\protocol;..\..\common\tp;..\..\..\10-common\include\platform;..\..\..\10-common\include\system1;..\..\..\10-common\include\protocol\sipstack;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\debug\win32_2010;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>bfcp.lib;tpquantum.lib;OspDll.lib;kdvsys.lib;xmlengine.lib;kdvdatanetlib.lib;Kdvencrypt.lib;umsmsg.lib;tpmsgmgr.lib;protocoladapter.lib;umsapi.lib;kdvlog.lib;modulemananger.lib;kdv323stacklib.lib;kdv323adapterlib_tps.lib;kdvcascade.lib;kdv323modulelib.lib;kdvsipstack2.lib;kdvsipadapter2.lib;kdvsipmodule2.lib;lanman.lib;tinyxml.lib;zlibx.lib;kpropx.lib;kdvprotocommon.lib;kdvsdp.lib;quantumsock.lib;log4cplus.lib;log4cplusclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmtd.lib;msvcprtd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>_USE_LOG4CPLUS_;WIN32;_ENABLE_QUANTUM_PROJECT_;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp;..\..\..\10-common\include\protocol;..\..\common\tp;..\..\..\10-common\include\platform;..\..\..\10-common\include\system1;..\..\..\10-common\include\protocol\sipstack;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>..\..\..\10-common\lib\release\win32_2010;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>bfcp.lib;tpquantum.lib;OspDll.lib;kdvsys.lib;xmlengine.lib;kdvdatanetlib.lib;Kdvencrypt.lib;umsmsg.lib;tpmsgmgr.lib;protocoladapter.lib;umsapi.lib;kdvlog.lib;modulemananger.lib;kdv323stacklib.lib;kdv323adapterlib_tps.lib;kdvcascade.lib;kdv323modulelib.lib;kdvsipstack2.lib;kdvsipadapter2.lib;kdvsipmodule2.lib;lanman.lib;tinyxml.lib;zlibx.lib;kpropx.lib;kdvprotocommon.lib;kdvsdp.lib;quantumsock.lib;log4cplus.lib;log4cplusclient.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>libcmt.lib;msvcprt.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

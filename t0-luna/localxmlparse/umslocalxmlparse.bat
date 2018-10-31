@@ -1,0 +1,1 @@
+"localxmlparse.exe" "NULL" "NULL" "..\..\t1-uranus\common\tp\umsxmltype.h" "..\..\t1-uranus\common\tp\umscommonstruct.h" "NULL" "..\..\t1-uranus\umsmsg\source\umsxmlstruct.cpp" 

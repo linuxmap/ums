@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+echo "================ compiling mpu2tp for linux_81xx debug ================"
+make -f makefile_dm816x_r clean
+make -f makefile_dm816x_r 1>mpu2tp_linux_816x_compile_r.txt 2>&1
+mv mpu2tp_linux_816x_compile_r.txt ../../../10-common/version/compileinfo/ -f
+cp mpu2 ../../../10-common/version/release/linux_arm_dm81xx/ -f
+
+#echo "================ compiling mpu2tp for linux_81xxx debug ================"
+#make -f makefile_ppc_81xx 1>mpu2tp_linux_816xx_compile_r.txt 2>&1
+#mv mpu2tp_linux_816xx_compile_r.txt ../../../10-common/version/compileinfo/ -f
+
+cd ../../

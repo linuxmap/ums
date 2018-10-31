@@ -1,0 +1,67 @@
+###
+### Copyright (c) 2004 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in OSP linux project.
+###
+#########################################################################
+
+TOP := .
+
+COMM_DIR := .
+
+SRC_DIR := $(TOP)/../source
+
+CURDIR := .
+
+## Name and type of the target for this Makefile
+
+APP_TARGET      := testmodeserver_epoll
+
+## Define debugging symbols
+DEBUG = 0
+LINUX_COMPILER= _REDHAT_
+PWLIB_SUPPORT = 0
+
+CFLAGS += -m32
+LDFLAGS += -m32
+
+## Object files that compose the target(s)
+
+#OBJS := $(patsubst %.cpp,%.o,$(SRC_DIR))
+
+OBJS := $(SRC_DIR)/main \
+				$(SRC_DIR)/testmode \
+	
+
+## Libraries to include in shared object file
+
+LIBS :=  osp rt pthread unifysocket_epoll
+
+LIB_PATH = $(CURDIR)/../../../10-common/lib/release/linux
+
+## Add driver-specific include directory to the search path
+
+INC_PATH += $(CURDIR) $(CURDIR)/../include $(CURDIR)/../../../10-common/include/system1 $(CURDIR)/../../../10-common/include/platform $(CURDIR)/../../../10-common/include/tp \
+##	    $(CURDIR)/../../../10-common/include/platform \
+##	    $(CURDIR)/../../../10-common/include/system1 \
+##	    $(CURDIR)/../../../10-common/include/protocol \
+##      $(CURDIR)/../../../10-common/include/tp \
+##      $(CURDIR)/../../common/tp \
+##      $(CURDIR)/../include
+
+ifeq ($(PWLIB_SUPPORT),1)
+   INC_PATH += $(PWLIBDIR)/include/ptlib/unix $(PWLIBDIR)/include
+endif
+
+INSTALL_APP_PATH = $(CURDIR)/../../../10-common/version/release/linux
+
+include $(COMM_DIR)/common.mk
+
+clean:
+	rm -f ./source/*.o; rm -f $(APP_TARGET)
+
+release: install

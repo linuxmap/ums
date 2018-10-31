@@ -1,0 +1,6 @@
+/* THIS IS A GENERATED FILE -- DO NOT EDIT */
+/* configuro was passed a config.bld file */
+xdc.includeFile("/mnt/hgfs/D/code/20131028_TPS/Professional_VOB/10-common/common/linux_compile/config.bld");
+/* configuro was passed the target's name explicitly */
+var target  = xdc.module('gnu.targets.arm.GCArmv7A');
+Build.targets = [target];

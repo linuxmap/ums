@@ -1,0 +1,10 @@
+#!/bin/bash
+
+chmod -R 777 ./
+
+echo "========make X86 BIN FOR ums======"
+cd ./tpums_x86
+./x86_makeimage.sh
+
+cd ../tpumsds_x86
+./x86_makeimage.sh

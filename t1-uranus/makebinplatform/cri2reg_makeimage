@@ -1,0 +1,57 @@
+file1=../../10-common/version/release/linux_ppc_82xx/apploader/apploader
+file2=./cri2reg_autorun.inf
+file3=../../10-common/version/release/linux_ppc_82xx/kdvlogserver
+file4=../../10-common/version/release/os_linux/cri2/update.linux
+file5=../../10-common/version/release/os_linux/cri2/u-boot.bin
+file6=../../10-common/version/release/linux_ppc_82xx/regserver
+file7=../../10-common/version/release/linux_ppc_82xx/devmgrservice
+file8=./cri2reg_restartshell
+file9=./cri2reg_selfupdate.sh
+file10=./kdvlog.ini
+file11=./cri2reg_calcthread.sh
+file12=./sbin-cri2.tar.gz
+file13=./telnetportonoff.sh
+
+f1=1
+for file in $file1 $file2 $file3 $file4 $file5 $file6 $file7 $file8 $file9 $file10 $file11 $file12 $file13
+do
+
+if [ ! -f $file ]
+then
+f1=0
+echo err : $file not exist
+echo err : $file not exist > err.txt
+fi
+done
+
+if [ $f1 = 1 ]
+then
+
+
+[ -d ./tp ] && rm -rf ./tp
+mkdir tp
+
+for file in $file1 $file3 $file6 $file7 $file8 $file10 $file11 $file12 $file13
+do
+cp -f $file ./tp/
+done
+
+cp -f $file2 ./tp/autorun.inf
+cp -f $file9 ./tp/selfupdate.sh
+
+chmod 777 -R tp/*
+
+
+./mkyaffs2image ./tp sip.image convert
+sleep 3
+./mkos -i $file4 -a sip.image -b $file5 -v "$4.6.1 version:@pid:0x043E@pid:0x04E1@pid:0x04E2" -o kdvsip.bin
+
+cp -f kdvsip.bin ../../10-common/version/release/linux_ppc_82xx/sip-tp.bin
+gzip kdvsip.bin
+mv -f kdvsip.bin.gz ../../10-common/version/release/linux_ppc_82xx/sip-tp.bin.gz
+
+
+rm -fr tp
+rm -f sip.image
+
+fi

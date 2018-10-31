@@ -1,0 +1,4 @@
+umsmsgforsdk用于umssdk所需要的umsmsg,tpmsg库及相应头文件的发布
+
+此模块编译后，库和头文件所在99路径为include,lib目录
+发布目标为umssdk所在流路径，具体为20160627_TPS_SDK

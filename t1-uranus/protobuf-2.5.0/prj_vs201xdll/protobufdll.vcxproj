@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{F96C9419-23E0-4D38-89DF-5ECAC45B9842}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>protobufdll</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\..\..\10-common\lib\debug\win32_2010</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\..\..\10-common\lib\release\win32_2010</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;_DEBUG;_WINDOWS;_USRDLL;PROTOBUFDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp\protobuf-2.5.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;PROTOBUF_USE_DLLS;LIBPROTOBUF_EXPORTS;NDEBUG;_WINDOWS;_USRDLL;PROTOBUFDLL_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp\protobuf-2.5.0;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\coded_stream.cc" />
+    <ClCompile Include="..\source\common.cc" />
+    <ClCompile Include="..\source\descriptor.cc" />
+    <ClCompile Include="..\source\descriptor.pb.cc" />
+    <ClCompile Include="..\source\descriptor_database.cc" />
+    <ClCompile Include="..\source\dynamic_message.cc" />
+    <ClCompile Include="..\source\extension_set.cc" />
+    <ClCompile Include="..\source\extension_set_heavy.cc" />
+    <ClCompile Include="..\source\generated_message_reflection.cc" />
+    <ClCompile Include="..\source\generated_message_util.cc" />
+    <ClCompile Include="..\source\gzip_stream.cc" />
+    <ClCompile Include="..\source\importer.cc" />
+    <ClCompile Include="..\source\message.cc" />
+    <ClCompile Include="..\source\message_lite.cc" />
+    <ClCompile Include="..\source\once.cc" />
+    <ClCompile Include="..\source\parser.cc" />
+    <ClCompile Include="..\source\printer.cc" />
+    <ClCompile Include="..\source\reflection_ops.cc" />
+    <ClCompile Include="..\source\repeated_field.cc" />
+    <ClCompile Include="..\source\service.cc" />
+    <ClCompile Include="..\source\stringprintf.cc" />
+    <ClCompile Include="..\source\structurally_valid.cc" />
+    <ClCompile Include="..\source\strutil.cc" />
+    <ClCompile Include="..\source\substitute.cc" />
+    <ClCompile Include="..\source\text_format.cc" />
+    <ClCompile Include="..\source\tokenizer.cc" />
+    <ClCompile Include="..\source\unknown_field_set.cc" />
+    <ClCompile Include="..\source\version.cc" />
+    <ClCompile Include="..\source\wire_format.cc" />
+    <ClCompile Include="..\source\wire_format_lite.cc" />
+    <ClCompile Include="..\source\x86_msvc\atomicops_internals_x86_msvc.cc" />
+    <ClCompile Include="..\source\zero_copy_stream.cc" />
+    <ClCompile Include="..\source\zero_copy_stream_impl.cc" />
+    <ClCompile Include="..\source\zero_copy_stream_impl_lite.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\10-common\include\tp\protobuf-2.5.0\google\protobuf\stubs\common.h" />
+    <ClInclude Include="..\include\config.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

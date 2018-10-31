@@ -1,0 +1,62 @@
+#=====================================================================
+# 说明：本 Makefile 用来编译 linux 版本的 MPU2 程序
+#---------------------------------------------------------------------
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+
+TOP := ..
+
+COMMMK_DIR := ../../../10-common/common/linux_compile
+
+SRC_DIR := $(TOP)/source
+
+## Name and type of the target for this Makefile
+APP_TARGET      := mpu2
+WORKSPACE  := $(shell pwd)
+
+
+
+## Define debugging symbols
+DEBUG = 0
+LINUX_COMPILER = _ARM_DM81_
+CFLAGS += -D_LINUX_ -D_LINUX12_ -D_MEDIACTRL_DM816x_ -D_MPUB_256_ -static
+
+## Object files that compose the target(s)
+OBJS := $(SRC_DIR)/main \
+				$(SRC_DIR)/umsvmp \
+				$(SRC_DIR)/umsvmpinst \
+				$(SRC_DIR)/vmprcvchan \
+				$(SRC_DIR)/vmpsndchan \
+				$(SRC_DIR)/vmpstyleinfo \
+
+## Libraries to include in shared object file
+LIBS :=osp kdvmedianet kdvencrypt tpmsgmgr umsboard \
+	xmlengine \
+	tinyxml\
+	umsmsg \
+	kdvlog \
+	kdvsys \
+	umsapi \
+	mpu2codecwrapper memcpy_a8opt codeccomponent codeclib mca mediacommon mediadrv \
+	vpssctrl \
+	vicpcodec \
+	audiodrv dm_audio  syslink nipdebug \
+	dspcci audproc_ubuntu_arm extexp_ubuntu_arm mixer_ubuntu_arm resample_ubuntu_arm videomanage_ubuntu_arm \
+	nipwrapper brdwrapper netra_nip_api \
+	tpquantum  lanman  crypto
+
+## Add driver-specific include directory to the search path
+INC_PATH +=  	$(WORKSPACE)/../include \
+							$(WORKSPACE)/../../../10-common/include/tp \
+							$(WORKSPACE)/../../../10-common/include/system1 \
+							$(WORKSPACE)/../../common/tp \
+							$(WORKSPACE)/../../../10-common/include/platform/dm816x \
+							$(WORKSPACE)/../../../10-common/include/protocol/tp \
+							$(WORKSPACE)/../../../10-common/include/protocol \
+							$(WORKSPACE)/../../../10-common/include/platform
+							
+#LIB_PATH += $(WORKSPACE)/../../../10-common/lib/release/linux_arm_dm81xx 										            				#$(WORKSPACE)/../../../10-common/lib/release/linux_arm_dm81xx/nipdebug						
+
+include $(COMMMK_DIR)/common.mk
+

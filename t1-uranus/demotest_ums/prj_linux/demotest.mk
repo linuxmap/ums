@@ -1,0 +1,49 @@
+LOCAL_PATH        := $(call my-dir)
+
+#[1]name
+MODULE            := demotest
+
+#[2]Install path
+#LIB_INSTALL_PATH	:= $(LOCAL_PATH)/../../../10-common/lib
+EXE_INSTALL_PATH    := $(LOCAL_PATH)/../../../10-common/version
+
+#[3]lib path
+LIB_PATH          	:= $(LOCAL_PATH)/../../../10-common/lib
+
+SYS_LIB_PATH        := $//usr/lib/mysql
+
+#[4]include path				  
+INC_PATH          := $(LOCAL_PATH)/../include \
+					 $(LOCAL_PATH)/../../../10-common/include/system1 \
+					 $(LOCAL_PATH)/../../../10-common/include/cbb/license \
+					 $(LOCAL_PATH)/../../../10-common/include/protocol \
+					 $(LOCAL_PATH)/../../../10-common/include/platform \
+                     $(LOCAL_PATH)/../../../10-common/include/tp
+
+SRC_CFILES	      := $(wildcard $(LOCAL_PATH)/../source/*.c)
+SRC_CPPFILES	  := $(wildcard $(LOCAL_PATH)/../source/*.cpp)
+SRC_CCFILES	      := $(wildcard $(LOCAL_PATH)/../source/*.cc)
+
+#[5]src files
+SRCS              := $(SRC_CFILES) $(SRC_CPPFILES) $(SRC_CCFILES)
+
+#[6]lib names
+#LIBS              += pthread rt log4cplusclient log4cplus
+#DLLS              += protobufmsgdll
+#LIBS			   += 
+#DLLS			   += 
+#LIBS			   += pthread rt 
+LIBS			   += pthread rt
+STATICLIBS         += osp tpsocket_select
+DLLS			   +=
+
+#[7]build param
+LDFLAGS           += -m32
+CFLAGS            += -m32
+
+#[8]use gcc or g++
+USEGCC = 0	
+
+#include $(BUILD_STATIC_LIBRARY)
+#include $(BUILD_SHARED_LIBRARY)
+include $(BUILD_EXECUTABLE)

@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo make -f makefile_linux_debug clean
+make -f makefile_linux_debug clean
+
+echo make -f makefile_linux_debug
+make -f makefile_linux_debug>&../../../10-common/version/compileinfo/readlicenselib_redhat_d.txt
+
+echo make -f makefile_linux_release clean
+make -f makefile_linux_release clean
+
+echo make -f makefile_linux_release
+make -f makefile_linux_release>&../../../10-common/version/compileinfo/readlicenselib_redhat_r.txt
+
+

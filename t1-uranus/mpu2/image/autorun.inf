@@ -1,0 +1,5 @@
+[autorun]
+app = /usr/bin/mpu2.sh; 
+type = 0;
+app = /usr/bin/mpu2; 
+type = 0;

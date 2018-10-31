@@ -1,0 +1,13 @@
+tpcommontype.h和tpcommonstruct.h存放公用的枚举和结构体，当修改了这两个文件时，请运行commonxmlparse.bat脚本，生成的tpcommonxmltype.h和tpcommonxmlstruct.h文件也是公用的。
+
+commonxmlparse脚本参数有五个，分别为：
+
+"commonxmlparse.exe"                                  1. exe文件相对路径
+
+"..\..\10-common\include\tp\tpcommontype.h"           2. 公用枚举定义所在头文件的相对路径，必须存在且可读
+
+"..\..\10-common\include\tp\tpcommonxmltype.h"        3. 输出xmltype.h头文件的相对路径，必须可读写，可以不存在
+
+"..\..\10-common\include\tp\tpcommonstruct.h"         4. 公用结构体定义所在头文件的相对路径，必须存在且可读
+
+"..\..\10-common\include\tp\tpcommonxmlstruct.h"      5. 输出xmlstruct.h头文件的相对路径，必须可读写，可以不存在

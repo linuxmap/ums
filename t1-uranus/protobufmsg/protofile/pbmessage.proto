@@ -1,0 +1,19 @@
+package pbmsg;
+
+message TMsgHeader
+{
+    optional string 	msg_name	= 1;  //消息name，唯一标识一个消息
+	optional uint32 	seq_id		= 2;  //消息序列号
+}
+
+message TMsgBody
+{
+    optional string		name    	= 1;  //消息体名称
+	optional bytes  	content 	= 2;  //消息体数据
+}
+
+message TPBMessage
+{
+    optional TMsgHeader 	header = 1;  		//消息头部
+	repeated TMsgBody   	body   = 2;  		//消息体
+}

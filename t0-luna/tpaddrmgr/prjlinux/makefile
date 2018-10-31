@@ -1,0 +1,64 @@
+#=====================================================================
+# 说明：本makefile用来编译linux版本的tpaddrmgr各个库
+#---------------------------------------------------------------------
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+WORKSPACE  := $(shell pwd)
+
+#[编译器选择]
+#---------------------------------------------------------------------
+BDW_CC     := gcc
+BDW_CC_PLUS:= g++
+BDW_AR     := ar
+BDW_STRIP  := strip
+
+#[主编译选项，含宏定义、头文件路径]
+#---------------------------------------------------------------------
+BDW_CFLAGS := -fno-omit-frame-pointer -v -D_LINUX_ -D_HD2G_ -m32 -DARCH=PPC \
+              -I$(WORKSPACE)/../../../10-common/include/platform \
+              -I$(WORKSPACE)/../../../10-common/include/nms1 \
+              -I$(WORKSPACE)/../../../10-common/include/system1 \
+              -I$(WORKSPACE)/../../../10-common/include/algorithm \
+              -I$(WORKSPACE)/../../../10-common/include/protocol \
+              -I$(WORKSPACE)/../../../10-common/include/protocol/h323stack \
+              -I$(WORKSPACE)/../../../10-common/include/mcu \
+              -I$(WORKSPACE)/../../../10-common/include/cbb/protocol \
+              -I$(WORKSPACE)/../../../10-common/include/tp \
+              -I$(WORKSPACE)/../include
+
+#[编译的源文件和生成的目标文件的依赖关系]
+#---------------------------------------------------------------------
+PRJ_FILES:= $(wildcard $(WORKSPACE)/../source/*.cpp )
+
+PRJ_OBJS := $(PRJ_FILES:$(WORKSPACE)/../source/%.cpp=$(WORKSPACE)/%.o)
+
+            
+#[生成的库的名字和路径指定]:
+#---------------------------------------------------------------------
+DEBUG_LIB_PATH   := $(WORKSPACE)/../../../10-common/lib/debug/linux
+RELEASE_LIB_PATH := $(WORKSPACE)/../../../10-common/lib/release/linux
+LIBNAME          := libtpaddrmgr.a
+
+
+
+all:	debug release
+
+debug:
+	cd $(DEBUG_LIB_PATH);    rm -f $(LIBNAME)
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a
+	$(BDW_CC_PLUS) $(BDW_CFLAGS) -g $(PRJ_FILES) -c 
+	$(BDW_AR) crus $(LIBNAME) $(PRJ_OBJS)
+	mv -f $(LIBNAME) $(DEBUG_LIB_PATH)/$(LIBNAME)
+
+release:
+	cd $(RELEASE_LIB_PATH);  rm -f $(LIBNAME)   
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a
+	$(BDW_CC_PLUS) $(BDW_CFLAGS) -O2 $(PRJ_FILES) -c 
+	$(BDW_AR) crus $(LIBNAME) $(PRJ_OBJS)
+	mv -f $(LIBNAME) $(RELEASE_LIB_PATH)/$(LIBNAME)
+
+clean:
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a
+	cd $(DEBUG_LIB_PATH);    rm -f $(LIBNAME)
+	cd $(RELEASE_LIB_PATH);  rm -f $(LIBNAME)   

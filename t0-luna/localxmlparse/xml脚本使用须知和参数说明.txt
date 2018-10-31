@@ -1,0 +1,38 @@
+这里只有一个exe文件，请核对自己组对应的脚本，以下的“本地”请理解为自己组！
+
+当你修改了本地枚举和结构体定义所在的头文件，请注意，不包括tpcommontype.h和tpcommonstruct.h两个文件，而是如cnstype.h cnsstruct.h cnsumscommonstruct.h等文件，请运行自己组对应的local脚本，生成的xml文件建议放在自己组件的相应目录下。
+
+本地所用xmlparse脚本参数有7个，以ums为例，分别为：
+
+"xmlparse.exe"                                     1. exe文件相对路径
+
+"NULL"                                             2. 本地枚举定义所在第一个头文件的相对路径，若没有这个头文件，必须用"NULL"这个参数，若存在，则须可读
+
+"NULL"                                             3. 本地枚举定义所在第二个头文件的相对路径，若没有这个头文件，必须用"NULL"这个参数，若存在，则须可读
+
+"..\..\t1-uranus\common\tp\umsxmltype.h"           4. 输出xmltype.h头文件的相对路径，必须可读写，可以不存在
+
+"..\..\t1-uranus\common\tp\umscommonstruct.h"      5. 本地结构体定义所在第一个头文件的相对路径，若没有这个头文件，必须用"NULL"这个参数，若存在，则须可读
+
+"NULL"                                             6. 本地结构体定义所在第二个头文件的相对路径，若没有这个头文件，必须用"NULL"这个参数，若存在，则须可读
+
+"..\..\t1-uranus\umsmsg\source\umsxmlstruct.cpp"   7. 输出xmlstruct.h头文件的相对路径，必须可读写，可以不存在
+
+
+补充说明：
+
+1. 在输出的xmlstruct.h文件中，一开始include的头文件会根据输入参数的文件名变化随之变化
+
+例如，对ums解析后，umsxmlstruct.cpp文件开头为：
+
+#include "tpcommonxmlstruct.h"  \\ 固定的头文件
+#include "umsxmltype.h"         \\ 输出xmltype头文件名
+#include "tpstruct.h"           \\ 固定的头文件
+#include "umscommonstruct.h"    \\ 输入的结构体定义所在第一个头文件的文件名，若没有输入这个头文件，这行不存在
+// 如第六个参数不为空，此处为输入的结构体定义所在第二个头文件的文件名
+
+
+2. 输入的sturct定义文件和type文件，格式需要符合规范，且文件内至少含一个相应的struct定义和enum定义
+
+
+

@@ -1,0 +1,54 @@
+#!/bin/sh
+
+sleep 10
+
+#脚本启动10s后计算此时两个进程的最小固定（常用）线程
+regnumbase=$(ps | grep regserver | grep -v grep | wc -l)
+
+echo "reg basenum is $regnumbase"
+
+devnumbase=$(ps | grep devmgrservice | grep -v grep | wc -l)
+
+echo "dev basenum is $devnumbase"
+
+while true
+do
+
+#小于常用线程 说明有问题 需要重启 重启前需要确认杀死所有线程
+ regnum=$(ps | grep regserver | grep -v grep | wc -l)
+ if [ $regnum -lt $regnumbase ]
+ then
+   #保存当前线程信息和时间到文件中
+   echo "$(date) reg base: $regnumbase current: $regnum "
+   while [ $regnum -gt 0 ]
+   do
+   	#此时仍有存活线程 取得线程ID 强制杀死
+   	regid=$(ps | grep regserver | grep -v grep | sed -n '1'p | sed -re 's/[^0-9]*([0-9]*).*$/\1/;' )
+   	kill -9 $regid
+	regnum=$(ps | grep regserver | grep -v grep | wc -l)
+   done
+   sleep 5
+   /usr/bin/regserver &
+   sleep 8
+ fi
+ 
+ #小于常用线程 说明有问题 需要重启 重启前需要确认杀死所有线程
+ devnum=$(ps | grep devmgrservice | grep -v grep | wc -l)
+ if [ $devnum -lt $devnumbase ]
+ then
+   #保存当前线程信息和时间到文件中
+   echo "$(date) reg base: $devnumbase current: $devnum "
+   while [ $devnum -gt 0 ]
+   do
+   	#此时仍有存活线程 取得线程ID 强制杀死
+   	devid=$(ps | grep devmgrservice | grep -v grep | sed -n '1'p | sed -re 's/[^0-9]*([0-9]*).*$/\1/;' )
+   	kill -9 $devid
+	devnum=$(ps | grep devmgrservice | grep -v grep | wc -l)
+   done
+   sleep 5
+   /usr/bin/devmgrservice &
+   sleep 8
+ fi
+ 
+ sleep 2
+done

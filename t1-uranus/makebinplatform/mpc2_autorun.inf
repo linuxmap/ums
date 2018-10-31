@@ -1,0 +1,3 @@
+[autorun]
+app = /usr/bin/selfupdate.sh;
+type = 0;

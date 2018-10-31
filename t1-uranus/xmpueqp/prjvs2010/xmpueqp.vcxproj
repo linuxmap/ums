@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\common\tp\innereventxmpuaudbas.h" />
+    <ClInclude Include="..\..\common\tp\innereventxmpubas.h" />
+    <ClInclude Include="..\..\common\tp\innereventxmpumix.h" />
+    <ClInclude Include="..\..\common\tp\innereventxmpuvmp.h" />
+    <ClInclude Include="..\..\common\tp\umsxmpinterface.h" />
+    <ClInclude Include="..\include\audbaseqp.h" />
+    <ClInclude Include="..\include\audmixeqp.h" />
+    <ClInclude Include="..\include\umsxmpuinst.h" />
+    <ClInclude Include="..\include\vidbaseqp.h" />
+    <ClInclude Include="..\include\vmpeqp.h" />
+    <ClInclude Include="..\include\xmpudataconvert.h" />
+    <ClInclude Include="..\include\xmpuinnerstruct.h" />
+    <ClInclude Include="..\include\xmpuinterface.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\audbaseqp.cpp" />
+    <ClCompile Include="..\source\audmixeqp.cpp" />
+    <ClCompile Include="..\source\umsxmpinterface.cpp" />
+    <ClCompile Include="..\source\umsxmpuinst.cpp" />
+    <ClCompile Include="..\source\vidbaseqp.cpp" />
+    <ClCompile Include="..\source\vmpeqp.cpp" />
+    <ClCompile Include="..\source\xmpudataconvert.cpp" />
+    <ClCompile Include="..\source\xmpuinnerstruct.cpp" />
+    <ClCompile Include="..\source\xmpuinterface.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CD3CC260-C3E0-46C7-AEAE-6C727D78E6DA}</ProjectGuid>
+    <RootNamespace>xmpueqp</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>$(ProjectName)</TargetName>
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;..\..\..\10-common\include\libevent2;..\..\..\10-common\include\libevent2\win;..\..\..\10-common\include\librabbitmq;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>
+      </PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <OutputFile>..\..\..\10-common\lib\debug\win32_2010\umseqp.lib</OutputFile>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\debug\win32_2010\xmpueqp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;..\..\..\10-common\include\libevent2;..\..\..\10-common\include\libevent2\win;..\..\..\10-common\include\librabbitmq;</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\release\win32_2010\xmpueqp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

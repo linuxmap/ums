@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+
+
+
+echo "================ compiling tpaddrmgr release for linux ================"
+make -j4 -f makefile clean
+make -j4 -f makefile release 1>tpaddrmgr_linux_compile_r.txt 2>&1
+
+echo "================ compiling tpaddrmgr debug for linux ================"
+
+make -j4 -f makefile debug 1>tpaddrmgr_linux_compile_d.txt 2>&1
+
+mv tpaddrmgr_linux_compile_r.txt ../../../10-common/version/compileinfo/ -f
+mv tpaddrmgr_linux_compile_d.txt ../../../10-common/version/compileinfo/ -f
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+cd ../../

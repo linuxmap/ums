@@ -1,0 +1,30 @@
+#!/bin/sh
+
+OPTION=`echo $1 | tr "A-Z" "a-z"`
+
+cd prjlinux
+
+if [ "$OPTION" != "noclean" ]; then
+           make -j4 -f makefile_linux_d clean;
+fi
+
+make -j4 -f makefile_linux_d 1> ../../../10-common/version/compileinfo/umsnetbuf_linux_d.txt 2>&1
+make -j4 -f makefile_linux_d install
+echo makefile_linux_d completed!
+
+
+#-------------------------------------------------------
+if [ "$OPTION" != "noclean" ]; then
+           make -j4 -f makefile_linux_r clean;
+fi
+
+make -j4 -f makefile_linux_r 1> ../../../10-common/version/compileinfo/umsnetbuf_linux_r.txt 2>&1
+make -j4 -f makefile_linux_r install
+echo makefile_linux_r completed!
+
+
+
+
+
+
+cd ..

@@ -1,0 +1,435 @@
+#!/bin/sh
+#################################################################################################################################
+#
+# This is designed for building linux projects
+#
+# Author: ryg
+# Date  : 2015/05/05
+#
+# usage mbt_build TARGET=lib:dll:exe ABI=x86:arm-netra:arm-d6446:ppc-82xx:ppc-85xx VERSION=debug:release:all or mbt_build clean 
+#################################################################################################################################
+if [ -z ${MOD_NAME} ]; then
+    echo "[mbt_build]error:you must specify the MOD_NAME param!"
+	exit 1
+fi
+
+MBT_ROOT=`dirname $0`
+MBT_ROOT=`cd $MBT_ROOT && pwd`
+
+WORK_DIR=`pwd`
+BUILD_DIR=${WORK_DIR}/${MOD_NAME}_build
+TMP_DIR=""
+COMPILE_INFO_FILE=""
+
+echo "[mbt_build]info:MBT_ROOT is ${MBT_ROOT} BUILD_DIR is ${BUILD_DIR}"
+
+build_lib=false
+build_dll=false
+build_exe=false
+
+build_x86=false
+build_arm_netra=false
+build_arm_d6446=false
+build_ppc_82xx=false
+build_ppc_85xx=false
+
+build_debug=false
+build_release=false
+
+do_clean=false
+
+#param1 args
+function parse_arguments()
+{
+    for arg in "$@"
+	do
+	    case ${arg} in
+        TARGET=*)  
+            if [ ! -z `echo ${arg} | grep "lib"` ]; then
+                build_lib=true
+            fi
+            if [ ! -z `echo ${arg} | grep "dll"` ]; then
+                build_dll=true
+            fi
+            if [ ! -z `echo ${arg} | grep "exe"` ]; then
+                build_exe=true
+            fi            
+        ;;
+        
+        ABI=*)
+            if [ ! -z `echo ${arg} | grep "x86"` ]; then
+                build_x86=true
+            fi    
+            if [ ! -z `echo ${arg} | grep "arm-netra"` ]; then
+                build_arm_netra=true
+            fi
+            if [ ! -z `echo ${arg} | grep "arm-d6446"` ]; then
+                build_arm_d6446=true
+            fi
+            if [ ! -z `echo ${arg} | grep "ppc-82xx"` ]; then
+                build_ppc_82xx=true
+            fi
+            if [ ! -z `echo ${arg} | grep "ppc-85xx"` ]; then
+                build_ppc_85xx=true
+            fi        
+        ;;
+		
+		VERSION=*)  
+            if [ ! -z `echo ${arg} | grep "debug"` ]; then
+                build_debug=true
+            fi
+            if [ ! -z `echo ${arg} | grep "release"` ]; then
+                build_release=true
+            fi
+            if [ ! -z `echo ${arg} | grep "all"` ]; then
+                build_debug=true
+				build_release=true
+            fi            
+        ;;
+		
+		clean)
+		    do_clean=true
+		;;
+        
+        *)
+            
+        ;;
+        esac
+	done
+}
+
+#param1 MK_PATH      : makefile文件路径
+#param2 ABI          : 对应硬件平台
+#param3 MBT_DEBUG    : 是否debug版本
+function build()
+{
+    echo "MK_PATH=${1} ABI=${2} MBT_DEBUG=${3}"
+    make -f ${MBT_ROOT}/build-local.mk target TMP_DIR=${TMP_DIR} MK_PATH=${1} ABI=${2} MBT_DEBUG=${3} 1>${COMPILE_INFO_FILE} 2>&1
+}
+
+function buildlib()
+{
+    if [ -z ${MK_PATH_OF_STATICLIB} ]; then
+	    echo "warning:you must specify the MK_PATH_OF_STATICLIB for lib build!"
+	else
+	    if [ "${build_debug}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_lib_d.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/debug/x86
+			    mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} x86 1				
+	        fi
+			
+		    if [ "${build_arm_netra}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_lib_d.txt				
+			    TMP_DIR=${BUILD_DIR}/lib/debug/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} arm-netra 1				
+	        fi
+			
+		    if [ "${build_arm_d6446}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_lib_d.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/debug/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} arm-d6446 1				
+	        fi
+			
+		    if [ "${build_ppc_82xx}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_lib_d.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/debug/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} ppc-82xx 1				
+	        fi
+			
+		    if [ "${build_ppc_85xx}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_lib_d.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/debug/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} ppc-85xx 1				
+	        fi
+	    fi
+	
+	    if [ "${build_release}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_lib_r.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/release/x86
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} x86 0				
+	        fi
+			
+		    if [ "${build_arm_netra}" = "true" ]; then	
+                COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_lib_r.txt			
+			    TMP_DIR=${BUILD_DIR}/lib/release/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} arm-netra 0
+	        fi
+			
+		    if [ "${build_arm_d6446}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_lib_r.txt
+			    TMP_DIR=${BUILD_DIR}/lib/release/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} arm-d6446 0
+	        fi
+			
+		    if [ "${build_ppc_82xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_lib_r.txt
+			    TMP_DIR=${BUILD_DIR}/lib/release/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} ppc-82xx 0
+	        fi
+			
+		    if [ "${build_ppc_85xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_lib_r.txt
+			    TMP_DIR=${BUILD_DIR}/lib/release/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_STATICLIB} ppc-85xx 0
+	        fi
+	    fi
+    fi		
+}
+
+function builddll()
+{
+    if [ -z ${MK_PATH_OF_SHAREDLIB} ]; then
+	    echo "warning:you must specify the MK_PATH_OF_SHAREDLIB for dll build!"
+	else
+	    if [ "${build_debug}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_dll_d.txt
+			    TMP_DIR=${BUILD_DIR}/dll/debug/x86
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} x86 1
+	        fi
+			
+		    if [ "${build_arm_netra}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_dll_d.txt
+			    TMP_DIR=${BUILD_DIR}/dll/debug/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} arm-netra 1
+	        fi
+			
+		    if [ "${build_arm_d6446}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_dll_d.txt
+			    TMP_DIR=${BUILD_DIR}/dll/debug/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} arm-d6446 1
+	        fi
+			
+		    if [ "${build_ppc_82xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_dll_d.txt
+			    TMP_DIR=${BUILD_DIR}/dll/debug/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} ppc-82xx 1
+	        fi
+			
+		    if [ "${build_ppc_85xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_dll_d.txt
+			    TMP_DIR=${BUILD_DIR}/dll/debug/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} ppc-85xx 1
+	        fi
+	    fi
+	
+	    if [ "${build_release}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_dll_r.txt
+			    TMP_DIR=${BUILD_DIR}/dll/release/x86
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} x86 0
+	        fi
+		    if [ "${build_arm_netra}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_dll_r.txt
+			    TMP_DIR=${BUILD_DIR}/dll/release/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} arm-netra 0
+	        fi
+		    if [ "${build_arm_d6446}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_dll_r.txt
+			    TMP_DIR=${BUILD_DIR}/dll/release/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} arm-d6446 0
+	        fi
+		    if [ "${build_ppc_82xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_dll_r.txt
+			    TMP_DIR=${BUILD_DIR}/dll/release/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} ppc-82xx 0
+	        fi
+		    if [ "${build_ppc_85xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_dll_r.txt
+			    TMP_DIR=${BUILD_DIR}/dll/release/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_SHAREDLIB} ppc-85xx 0
+	        fi
+	    fi
+    fi		
+}
+
+function buildexe()
+{
+    if [ -z ${MK_PATH_OF_EXEC} ]; then
+	    echo "warning:you must specify the MK_PATH_OF_EXEC for exe build!"
+	else
+	    if [ "${build_debug}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_d.txt
+			    TMP_DIR=${BUILD_DIR}/exe/debug/x86
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} x86 1
+	        fi
+			
+		    if [ "${build_arm_netra}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_d.txt
+			    TMP_DIR=${BUILD_DIR}/exe/debug/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} arm-netra 1
+	        fi
+			
+		    if [ "${build_arm_d6446}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_d.txt
+			    TMP_DIR=${BUILD_DIR}/exe/debug/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} arm-d6446 1
+	        fi
+			
+		    if [ "${build_ppc_82xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_d.txt
+			    TMP_DIR=${BUILD_DIR}/exe/debug/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} ppc-82xx 1
+	        fi
+			
+		    if [ "${build_ppc_85xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_d.txt
+			    TMP_DIR=${BUILD_DIR}/exe/debug/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} ppc-85xx 1
+	        fi
+	    fi
+	
+	    if [ "${build_release}" = "true" ]; then
+	        if [ "${build_x86}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_x86_r.txt
+			    TMP_DIR=${BUILD_DIR}/exe/release/x86
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} x86 0
+	        fi
+			
+		    if [ "${build_arm_netra}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-netra_r.txt
+			    TMP_DIR=${BUILD_DIR}/exe/release/arm-netra
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} arm-netra 0
+	        fi
+			
+		    if [ "${build_arm_d6446}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_arm-d6446_r.txt
+			    TMP_DIR=${BUILD_DIR}/exe/release/arm-d6446
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} arm-d6446 0
+	        fi
+			
+		    if [ "${build_ppc_82xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-82xx_r.txt
+			    TMP_DIR=${BUILD_DIR}/exe/release/ppc-82xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} ppc-82xx 0
+	        fi
+			
+		    if [ "${build_ppc_85xx}" = "true" ]; then
+			    COMPILE_INFO_FILE=${COMPILE_INFO_DIR}/${MOD_NAME}_linux_ppc-85xx_r.txt
+			    TMP_DIR=${BUILD_DIR}/exe/release/ppc-85xx
+				mkdir -p ${TMP_DIR}
+				
+	            build ${MK_PATH_OF_EXEC} ppc-85xx 0
+	        fi
+	    fi	
+	fi	
+}
+
+
+function clean()
+{
+    if [ -d ${BUILD_DIR} ]; then
+	    rm -rf ${BUILD_DIR}
+	fi
+}
+
+parse_arguments "$@"
+
+echo "[mbt_build]info:build_lib=${build_lib}"
+echo "[mbt_build]info:build_dll=${build_dll}"
+echo "[mbt_build]info:build_exe=${build_exe}"
+echo "[mbt_build]info:build_x86=${build_x86}"
+echo "[mbt_build]info:build_arm_netra=${build_arm_netra}"
+echo "[mbt_build]info:build_arm_d6446=${build_arm_d6446}"
+echo "[mbt_build]info:build_ppc_82xx=${build_ppc_82xx}"
+echo "[mbt_build]info:build_ppc_85xx=${build_ppc_85xx}"
+echo "[mbt_build]info:build_debug=${build_debug}"
+echo "[mbt_build]info:build_release=${build_release}"
+echo "[mbt_build]info:do_clean=${do_clean}"
+
+if [ "${do_clean}" = "true" ]; then
+    clean 
+	exit 1
+fi
+
+#若没有指定TARGET，默认编译lib
+if [ "${build_lib}" = "false" ] && [ "${build_dll}" = "false" ] && [ "${build_exe}" = "false" ];then
+    build_lib=true
+	echo "[mbt_build]info:param TARGET not set, default to build lib!"
+fi
+
+#若没有指定ABI，默认编译x86
+if [ "${build_x86}" = "false" ] && [ "${build_arm_netra}" = "false" ] && [ "${build_arm_d6446}" = "false" ] && [ "${build_ppc_82xx}" = "false" ] && [ "${build_ppc_85xx}" = "false" ];then
+    build_x86=true
+	echo "[mbt_build]info:param ABI not set, default to build x86!"
+fi
+
+#若没有指定VERSION，默认编译all
+if [ "${build_debug}" = "false" ] && [ "${build_release}" = "false" ];then
+    build_debug=true
+    build_release=true
+	echo "[mbt_build]info:param VERSION not set, default to build all version!"
+fi
+
+if [ "${build_lib}" = "true" ]; then
+    buildlib
+fi
+
+if [ "${build_dll}" = "true" ]; then
+    builddll
+fi
+
+if [ "${build_exe}" = "true" ]; then
+    buildexe
+fi

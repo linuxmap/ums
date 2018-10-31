@@ -1,0 +1,15 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+
+
+echo "================ compiling umscall for linux debug ================"
+make -j4 -f makefile_linux clean debug 1>umscall_linux_compile_debug.txt 2>&1
+mv umscall_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling umscall for linux release ================"
+make -j4 -f makefile_linux clean release 1>umscall_linux_compile_release.txt 2>&1
+mv umscall_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+cd ../../

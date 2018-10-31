@@ -1,0 +1,66 @@
+#=====================================================================
+# 说明：本makefile用来编译linux版本的kdvmt linux 应用程序
+#---------------------------------------------------------------------
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+WORKSPACE  := $(shell pwd)
+
+#[编译器选择]
+#---------------------------------------------------------------------
+BDW_CC     := /opt/ppc/bin/ppc_82xx-gcc
+BDW_CC_PLUS:= /opt/ppc/bin/ppc_82xx-g++
+BDW_AR     := /opt/ppc/bin/ppc_82xx-ar
+BDW_STRIP  := /opt/ppc/bin/ppc_82xx-strip
+
+#[主编译选项，含宏定义、头文件路径]
+#---------------------------------------------------------------------
+BDW_CFLAGS := -fno-omit-frame-pointer -v -D_LINUX_ -D_PPC_82XX_ -DARCH=PPC\
+              -static \
+              -DBIG_ENDIAN -DEMBED_REC \
+              -I$(WORKSPACE)/../../../10-common/include/platform \
+			  -I$(WORKSPACE)/../../../10-common/include/snmp \
+              -I$(WORKSPACE)/../../../10-common/include/system1 \
+              -I$(WORKSPACE)/../../../10-common/include/protocol \
+      				-I$(WORKSPACE)/../../../10-common/include/tp \
+      				-I$(WORKSPACE)/../../../10-common/include/cbb/license \
+      				-I$(WORKSPACE)/../../common/tp \
+      				-I$(WORKSPACE)/../include \
+      				-I$(WORKSPACE)/../../../10-common/include/protocol/tp \
+      				-I$(WORKSPACE)/../../../10-common/include/cbb/tinyxml 
+
+
+#[编译的源文件和生成的目标文件的依赖关系]
+#---------------------------------------------------------------------
+PRJ_FILES:= $(wildcard $(WORKSPACE)/../source/*.cpp )
+
+PRJ_OBJS := $(PRJ_FILES:$(WORKSPACE)/../source/%.cpp=$(WORKSPACE)/%.o)
+
+#[依赖的库的名字和路径指定]:
+#---------------------------------------------------------------------
+DEBUG_LIB_PATH   := -L$(WORKSPACE)/../../../10-common/lib/debug/linux_ppc_82xx \
+		    -L$(WORKSPACE)/../../../10-common/lib/debug/linux_ppc_82xx/nipdebug \
+		    -L$(WORKSPACE)/../../../10-common/lib/debug/linux_ppc_82xx/nip
+
+RELEASE_LIB_PATH := -L$(WORKSPACE)/../../../10-common/lib/release/linux_ppc_82xx \
+										-L$(WORKSPACE)/../../../10-common/lib/release/linux_ppc_82xx/nip \
+										-L$(WORKSPACE)/../../../10-common/lib/release/linux_ppc_82xx/nipdebug
+ 
+APP_NAME         := umsserver
+PRJ_LIBS         := -lumsue -lumscall -lumsapi -lumsconfig -ltemplatecfg -lumseqp -lkdvaddrbook -lumsmsg -ltpmsgmgr -ltpaddrmgr -lkdvlog -lxmlengine -ltinyxml -lcommonapi -lreadlicenselib -lkdvencrypt\
+-lkdvum -llanman -losp -lkdvsys -lnipwrapper -lbrdwrapper -lppc_8313_nip_api -lrt -lpthread
+                    
+all:	debug release
+
+debug:
+	cd $(WORKSPACE);         rm -f *.o; rm -f $(APP_NAME)
+	$(BDW_CC_PLUS) $(BDW_CFLAGS) -g $(PRJ_FILES) $(PRJ_LIBS) $(DEBUG_LIB_PATH) -o $(APP_NAME)
+	cp -f $(APP_NAME) $(WORKSPACE)/../../../10-common/version/debug/linux_ppc_82xx/$(APP_NAME)
+
+release:
+	cd $(WORKSPACE);         rm -f *.o; rm -f $(APP_NAME)
+	$(BDW_CC_PLUS) $(BDW_CFLAGS) -O2 $(PRJ_FILES) $(PRJ_LIBS) $(RELEASE_LIB_PATH) -o $(APP_NAME)
+	cp -f $(APP_NAME) $(WORKSPACE)/../../../10-common/version/release/linux_ppc_82xx/$(APP_NAME)
+
+clean:
+	cd $(WORKSPACE);         rm -f *.o; rm -f $(APP_NAME)

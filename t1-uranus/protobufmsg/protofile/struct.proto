@@ -1,0 +1,14 @@
+package pbmsg;
+
+import "base.proto";
+import "enum.proto";
+
+message TViewReq
+{
+	optional uint32				wConfId = 1;
+	optional uint32				wSrcEpId = 2;
+	optional uint32				wSrcScreenIndex = 3;
+	optional uint32				wDstEpId = 4; //如果是emViewType是vmp，则为vmp的外设id
+	optional uint32				wDstScreenIndex = 5;
+	optional EmViewType			emViewType = 6;
+}

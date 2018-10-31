@@ -1,0 +1,278 @@
+<xdc.runtime.Types.RtaDecoderData>
+  <targetName>gnu.targets.arm.GCArmv7A</targetName>
+  <binaryParser>undefined</binaryParser>
+  <endian>little</endian>
+  <bitsPerChar>8</bitsPerChar>
+  <argSize>4</argSize>
+  <eventSize>48</eventSize>
+  <dataTransportClassName>undefined</dataTransportClassName>
+  <controlTransportClassName>undefined</controlTransportClassName>
+  <loggers-length>1</loggers-length>
+  <loggers>
+    <name>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</name>
+    <type>ti.sdo.utils.loggers.LoggerSysTID</type>
+    <metaArgs>null</metaArgs>
+  </loggers>
+  <modMap-length>28</modMap-length>
+  <modMap key="xdc.runtime.Assert">
+    <id>32770</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Core">
+    <id>32771</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Defaults">
+    <id>32772</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Diags">
+    <id>32773</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Error">
+    <id>32774</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Gate">
+    <id>32775</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Log">
+    <id>32776</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Main">
+    <id>32777</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>3333330033333333</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Memory">
+    <id>32778</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.HeapStd">
+    <id>32779</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Registry">
+    <id>32780</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>2222220022222222</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Startup">
+    <id>32781</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.System">
+    <id>32782</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.SysStd">
+    <id>32783</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Text">
+    <id>32784</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.Timestamp">
+    <id>32785</id>
+    <logger>null</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.knl.Thread">
+    <id>32787</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.knl.GateThread">
+    <id>32788</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.knl.SemThread">
+    <id>32789</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="xdc.runtime.knl.SemProcess">
+    <id>32790</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.xdcruntime.linux.GateThreadSupport">
+    <id>32794</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.xdcruntime.linux.SemThreadSupport">
+    <id>32795</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.xdcruntime.linux.SemProcessSupport">
+    <id>32796</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.xdcruntime.linux.ThreadSupport">
+    <id>32797</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.xdcruntime.linux.TimestampPosix">
+    <id>32798</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000100000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.utils.loggers.LoggerSysTID">
+    <id>32801</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.utils.loggers.LoggerMFPNull">
+    <id>32802</id>
+    <logger>null</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <modMap key="ti.sdo.utils.loggers.LogMFP">
+    <id>32803</id>
+    <logger>ti.sdo.utils.loggers.LoggerSysTID.Instance#0</logger>
+    <diagsMask>0000110000000000</diagsMask>
+  </modMap>
+  <evtMap-length>30</evtMap-length>
+  <evtMap key="xdc.runtime.Log.L_construct">
+    <id>983</id>
+    <msg>%3C--+construct%3A+%25p%28%27%25s%27%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_create">
+    <id>1007</id>
+    <msg>%3C--+create%3A+%25p%28%27%25s%27%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_destruct">
+    <id>1028</id>
+    <msg>--%3E+destruct%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_delete">
+    <id>1047</id>
+    <msg>--%3E+delete%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_error">
+    <id>1064</id>
+    <msg>ERROR%3A+%25%24F%25%24S</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_warning">
+    <id>1078</id>
+    <msg>WARNING%3A+%25%24F%25%24S</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Log.L_info">
+    <id>1094</id>
+    <msg>%25%24F%25%24S</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.addModule$ENTRY">
+    <id>1101</id>
+    <msg>--%3E+addModule%3A+%28%25p%2C+%22%25s%22%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.addModule$EXIT">
+    <id>1127</id>
+    <msg>%3C--+addModule%3A+%25d</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findByName$ENTRY">
+    <id>1145</id>
+    <msg>--%3E+findByName%3A+%28%22%25s%22%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findByName$EXIT">
+    <id>1168</id>
+    <msg>%3C--+findByName%3A+%25p</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findByNamePattern$ENTRY">
+    <id>1187</id>
+    <msg>--%3E+findByNamePattern%3A+%28%22%25s%22%2C+%25d%2C+%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findByNamePattern$EXIT">
+    <id>1225</id>
+    <msg>%3C--+findByNamePattern%3A+%25p</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findById$ENTRY">
+    <id>1251</id>
+    <msg>--%3E+findById%3A+%28%25d%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.findById$EXIT">
+    <id>1270</id>
+    <msg>%3C--+findById%3A+%25p</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getMask$ENTRY">
+    <id>1287</id>
+    <msg>--%3E+getMask%3A+%28%22%25s%22%2C+%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getMask$EXIT">
+    <id>1311</id>
+    <msg>%3C--+getMask%3A+%25d</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.isMember$ENTRY">
+    <id>1327</id>
+    <msg>--%3E+isMember%3A+%28%25d%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.isMember$EXIT">
+    <id>1346</id>
+    <msg>%3C--+isMember%3A+%25d</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getNextModule$ENTRY">
+    <id>1363</id>
+    <msg>--%3E+getNextModule%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getNextModule$EXIT">
+    <id>1387</id>
+    <msg>%3C--+getNextModule%3A+%25p</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getModuleName$ENTRY">
+    <id>1409</id>
+    <msg>--%3E+getModuleName%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getModuleName$EXIT">
+    <id>1433</id>
+    <msg>%3C--+getModuleName%3A+%22%25s%22</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getModuleId$ENTRY">
+    <id>1457</id>
+    <msg>--%3E+getModuleId%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="xdc.runtime.Registry.getModuleId$EXIT">
+    <id>1479</id>
+    <msg>%3C--+getModuleId%3A+%25d</msg>
+  </evtMap>
+  <evtMap key="ti.sdo.xdcruntime.linux.SemProcessSupport.L_extant">
+    <id>1499</id>
+    <msg>---+SemProcess%28%25d%29+already+exists%2C+incrementing+reference+count</msg>
+  </evtMap>
+  <evtMap key="ti.sdo.xdcruntime.linux.SemProcessSupport.L_create">
+    <id>1563</id>
+    <msg>---+SemProcess%28%25d%29+DNE%2C+creating</msg>
+  </evtMap>
+  <evtMap key="ti.sdo.xdcruntime.linux.ThreadSupport.L_start">
+    <id>1596</id>
+    <msg>%3C--+start%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="ti.sdo.xdcruntime.linux.ThreadSupport.L_finish">
+    <id>1612</id>
+    <msg>--%3E+finish%3A+%28%25p%29</msg>
+  </evtMap>
+  <evtMap key="ti.sdo.xdcruntime.linux.ThreadSupport.L_join">
+    <id>1629</id>
+    <msg>--%3E+join%3A+%28%25p%29</msg>
+  </evtMap>
+</xdc.runtime.Types.RtaDecoderData>

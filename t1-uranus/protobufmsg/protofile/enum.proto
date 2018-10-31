@@ -1,0 +1,8 @@
+package pbmsg;
+
+enum EmViewType
+{
+	emViewType_Invalid = 0;
+	emViewType_Ep = 1;
+	emViewType_Vmp = 2;
+}

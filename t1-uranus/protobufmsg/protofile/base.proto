@@ -1,0 +1,127 @@
+package pbmsg;
+
+//通用基本数据类型
+
+// base
+message TU8
+{
+    optional uint32 value = 1;
+}
+
+message TU16
+{
+    optional uint32 value = 1;
+}
+
+message TU32
+{
+    optional uint32 value = 1;
+}
+
+message TU64
+{
+    optional uint64 value = 1;
+}
+
+// base
+message TS8
+{
+    optional int32 value = 1;
+}
+
+message TS16
+{
+    optional int32 value = 1;
+}
+
+message TS32
+{
+    optional int32 value = 1;
+}
+
+message TS64
+{
+	optional int64 value = 1;
+}
+
+// base
+message TBool
+{
+    optional bool value = 1;
+}
+
+message TBOOL32
+{
+    optional int32 value = 1;
+}
+
+message TBytes
+{
+    optional bytes value = 1;
+}
+
+message TString
+{
+    optional string value = 1;
+}
+
+// multi base
+message TMultiU8
+{
+    repeated uint32 values = 1;
+}
+
+message TMultiU16
+{
+    repeated uint32 values = 1;
+}
+
+message TMultiU32
+{
+    repeated uint32 values = 1;
+}
+
+message TMultiU64
+{
+    repeated uint64 values = 1;
+}
+
+message TMultiS8
+{
+    repeated int32 values = 1;
+}
+
+message TMultiS16
+{
+    repeated int32 values = 1;
+}
+
+message TMultiS32
+{
+    repeated int32 values = 1;
+}
+
+message TMultiS64
+{
+    repeated int64 values = 1;
+}
+
+message TMultiBool
+{
+    repeated bool values = 1;
+}
+
+message TMultiBOOL32
+{
+    repeated int32 values = 1;
+}
+
+message TMultiBytes
+{
+    repeated bytes values = 1;
+}
+
+message TMultiString
+{
+    repeated string values = 1;
+}

@@ -1,0 +1,54 @@
+###
+### Copyright (c) 2007 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in 3AS linux project.
+###
+#########################################################################
+
+TOP := ..
+
+SRC_DIR := $(TOP)/source
+
+CURDIR := ./
+
+## Name and type of the target for this Makefile
+
+ARC_TARGET      := readlicenselib
+
+## Define debugging symbols
+DEBUG = 0
+LINUX_COMPILER= _REDHAT_
+PWLIB_SUPPORT = 0
+
+## Object files that compose the target(s)
+
+OBJS := $(SRC_DIR)/readlicense
+
+
+## Libraries to include in shared object file
+#LIBS := kdvencrypt kdvsys
+
+## Add driver-specific include directory to the search path
+CFLAGS += -D_LINUX_ -m32
+
+INC_PATH += $(TOP)/include \
+        $(CURDIR)../../../10-common/include/system1 \
+        $(CURDIR)../../../10-common/include/nms1 \
+        $(CURDIR)../../../10-common/include/platform \
+        $(CURDIR)../../../10-common/include/protocol \
+        $(CURDIR)../../../10-common/include/cbb/license \
+        $(CURDIR)../../../b0-thirdparty/haikey/include
+
+ifeq ($(PWLIB_SUPPORT),1)
+   INC_PATH += $(PWLIBDIR)/include/ptlib/unix $(PWLIBDIR)/include
+endif
+
+INSTALL_LIB_PATH = $(CURDIR)/../../../10-common/lib/release/linux
+
+INSTALL_APP_PATH := ..
+include ./common.mk
+

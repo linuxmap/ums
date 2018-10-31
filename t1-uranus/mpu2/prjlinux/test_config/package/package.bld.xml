@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  This file conforms to the DTD xdc/bld/build.dtd -->
+<package name="test_config" version="" producerId="undefined">
+    <units>
+    </units>
+    <sources>
+        <srcFile name="package/cfg/81xxApp_xv7A.c"/>
+    </sources>
+    <configurations>
+        <srcFile name="/mnt/hgfs/D/code/20131028_TPS/Professional_VOB/10-common/common/linux_compile/81xxApp.cfg"/>
+    </configurations>
+    <makefiles>
+        <srcFile name="package.mak" src="package.bld"/>
+        <srcFile name="package/package.xdc.dep" src="package.xdc"/>
+        <srcFile name="package/cfg/81xxApp_xv7A.mak" src="package.bld"/>
+        <srcFile name="package/cfg/81xxApp_xv7A.ov7A.dep" src="package/cfg/81xxApp_xv7A.c"/>
+        <srcFile name="package/cfg/81xxApp_xv7A.dep" src="package/cfg/81xxApp_xv7A.cfg"/>
+        <srcFile name="package/rel/test_config.tar.dep" src="package/rel/test_config.xdc.inc"/>
+    </makefiles>
+    <targets>
+        <target name="gnu.targets.arm.GCArmv7A"
+            version="gnu.targets.arm.GCArmv7A{1,0,4.3,3"
+            platform="ti.platforms.evmTI816X"
+            isa="v7A"
+            suffix="v7A"
+            rootDir="/opt/CodeSourcery/Sourcery_G++_Lite//"
+            os="Linux"
+            rts="gnu.targets.arm.rtsv7A">
+            <model endian="little"
+                codeModel="undefined"
+                dataModel="undefined"/>
+        </target>
+    </targets>
+    <libraries>
+    </libraries>
+    <executables>
+    <executable name="81xxApp"
+        pname="81xxApp.xv7A"
+        target="gnu.targets.arm.GCArmv7A"
+        platform="ti.platforms.evmTI816X"
+        profile="release"
+        xCfgScript="package/cfg/81xxApp_xv7A.cfg"
+        xCfgPrefix="package/cfg/81xxApp_xv7A"
+        cfgScript="/mnt/hgfs/D/code/20131028_TPS/Professional_VOB/10-common/common/linux_compile/81xxApp.cfg"
+        cfgArgs="null"
+        />
+    </executables>
+    <tests>
+    <test exeName="81xxApp.xv7A"
+        args=""
+        groupName="81xxApp.xv7A"
+        refOutput="undefined"
+        refExitCode="0"
+        execArgs=""
+        />
+    </tests>
+    <releases relDir="package/rel/">
+    <release name="test_config"
+        pname="test_config.tar"
+        label="default"
+    >
+        <file name="package/build.cfg"/>
+        <file name="package/package.ext.xml"/>
+        <file name="package/package.xdc.inc"/>
+        <file name="package/package.bld.xml"/>
+        <file name="package/package.rel.dot"/>
+    </release>
+    </releases>
+    <repositories>
+    </repositories>
+</package>

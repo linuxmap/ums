@@ -1,0 +1,19 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+
+
+
+echo "================ compiling umsapi for linux debug ================"
+make -j4 -f makefile_linux clean debug 1>umsapi_linux_compile_debug.txt 2>&1
+mv umsapi_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling umsapi for linux release ================"
+make -j4 -f makefile_linux clean release 1>umsapi_linux_compile_release.txt 2>&1
+mv umsapi_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+
+
+
+cd ../../

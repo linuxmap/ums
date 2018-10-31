@@ -1,0 +1,75 @@
+file1=../../10-common/version/release/linux_ppc_85xx/apploader/apploader
+file2=./is22_autorun.inf
+file3=../../10-common/version/release/linux_ppc_85xx/umsmediatrans
+file4=../../10-common/version/release/linux_ppc_85xx/umssipadapter
+file10=../../10-common/version/release/linux_ppc_85xx/umsnetbuf
+file5=../../10-common/version/release/os_linux/is3-mpc8548/update.linux
+file6=../../10-common/version/release/os_linux/is3-mpc8548/u-boot.bin
+file7=../../10-common/version/release/linux_ppc_85xx/kdvlogserver
+file8=./is22_restartshell
+file9=./nip.sh
+file11=./is22_kdvlog.ini
+file12=./is22_selfupdate.sh
+file13=../../10-common/version/release/linux_ppc_85xx/ntpd
+file14=../../10-common/version/release/linux_ppc_85xx/ntpdate
+file15=./ntp.conf
+file16=./startntp.sh
+file17=./is22_calcthread.sh
+file18=./is2.2-8548.tar.gz
+file19=./telnetportonoff.sh
+
+f1=1
+for file in $file1 $file2 $file3 $file4 $file5 $file6 $file7 $file8 $file9 $file10 $file11 $file12 $file13 $file14 $file15 $file16 $file17 $file18 $file19
+do
+if [ ! -f $file ]
+then
+f1=0
+echo err:$file not exist
+echo err:$file not exist > err.txt
+fi
+done
+
+
+
+if [ $f1 = 1 ]
+then
+
+[ -d ./tp ] && rm -rf ./tp
+mkdir tp
+
+for file in $file1 $file3 $file4 $file7 $file8 $file9 $file10 $file13 $file14 $file15 $file16 $file17 $file18 $file19
+do
+cp -f $file ./tp/
+done
+
+cp -f $file2 ./tp/autorun.inf
+cp -f $file11 ./tp/kdvlog.ini
+cp -f $file12 ./tp/selfupdate.sh
+
+chmod 777 -R tp/*
+
+./mkyaffs2image  tp  tpums.image convert
+#cp -f tpums.image  ../../10-common/version/release/linux_ppc_85xx/tpums.image
+
+
+cp -f $file5 ./
+cp -f $file6 ./
+
+
+./mkos -i update.linux -a tpums.image -b u-boot.bin -v "$4.6.1 version:@pid:0x0441@pid:0x04DD" -o  tpums.bin
+cp -f tpums.bin tpums.bin.backup
+gzip tpums.bin
+
+
+cp -f tpums.bin.backup  ../../10-common/version/release/linux_ppc_85xx/is22-tp.bin
+cp -f tpums.bin.gz  ../../10-common/version/release/linux_ppc_85xx/is22-tp.bin.gz
+
+rm -fr tp
+rm -f update.linux
+rm -f u-boot.bin
+rm -f tpums.image
+rm -f tpums.bin.backup
+rm -f tpums.bin.gz
+
+fi
+

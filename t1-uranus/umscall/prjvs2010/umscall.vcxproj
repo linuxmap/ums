@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\bandwidth.cpp" />
+    <ClCompile Include="..\source\callinnerstruct.cpp" />
+    <ClCompile Include="..\source\callmgr.cpp" />
+    <ClCompile Include="..\source\callnodemgr.cpp" />
+    <ClCompile Include="..\source\callprint.cpp" />
+    <ClCompile Include="..\source\dataconfhandler.cpp" />
+    <ClCompile Include="..\source\dsnodepool.cpp" />
+    <ClCompile Include="..\source\dualmgr.cpp" />
+    <ClCompile Include="..\source\getvidaud.cpp" />
+    <ClCompile Include="..\source\nodefsm.cpp" />
+    <ClCompile Include="..\source\pollmgr.cpp" />
+    <ClCompile Include="..\source\procnodeds.cpp" />
+    <ClCompile Include="..\source\putaud.cpp" />
+    <ClCompile Include="..\source\querytmpalias.cpp" />
+    <ClCompile Include="..\source\selviewmgr.cpp" />
+    <ClCompile Include="..\source\tvwallmgr.cpp" />
+    <ClCompile Include="..\source\umsaudmix.cpp" />
+    <ClCompile Include="..\source\umsbas.cpp" />
+    <ClCompile Include="..\source\umsconfinst.cpp" />
+    <ClCompile Include="..\source\umsdiscussnew.cpp" />
+    <ClCompile Include="..\source\umseapu.cpp" />
+    <ClCompile Include="..\source\umseqpservice.cpp" />
+    <ClCompile Include="..\source\umsgetconfvidaud.cpp" />
+    <ClCompile Include="..\source\umsmcumgr.cpp" />
+    <ClCompile Include="..\source\umsnetportmgr.cpp" />
+    <ClCompile Include="..\source\umsreg.cpp" />
+    <ClCompile Include="..\source\umsrollcall.cpp" />
+    <ClCompile Include="..\source\umsstackinterface.cpp" />
+    <ClCompile Include="..\source\umsvmp.cpp" />
+    <ClCompile Include="..\source\vmpservicehandler.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\bandwidth.h" />
+    <ClInclude Include="..\include\callinnerstruct.h" />
+    <ClInclude Include="..\include\callmgr.h" />
+    <ClInclude Include="..\include\callnodemgr.h" />
+    <ClInclude Include="..\include\dataconfhandler.h" />
+    <ClInclude Include="..\include\dslist.h" />
+    <ClInclude Include="..\include\dsnodepool.h" />
+    <ClInclude Include="..\include\dualmgr.h" />
+    <ClInclude Include="..\include\getvidaud.h" />
+    <ClInclude Include="..\include\nodefsm.h" />
+    <ClInclude Include="..\include\pollmgr.h" />
+    <ClInclude Include="..\include\procnodeds.h" />
+    <ClInclude Include="..\include\putaud.h" />
+    <ClInclude Include="..\include\querytmpalias.h" />
+    <ClInclude Include="..\include\selviewmgr.h" />
+    <ClInclude Include="..\include\tvwallmgr.h" />
+    <ClInclude Include="..\include\umsaudmix.h" />
+    <ClInclude Include="..\include\umsbas.h" />
+    <ClInclude Include="..\include\umsconfinst.h" />
+    <ClInclude Include="..\include\umsdiscussnew.h" />
+    <ClInclude Include="..\include\umseapu.h" />
+    <ClInclude Include="..\include\umseqpservice.h" />
+    <ClInclude Include="..\include\umsgetconfvidaud.h" />
+    <ClInclude Include="..\include\umsmcumgr.h" />
+    <ClInclude Include="..\include\umsnetportmgr.h" />
+    <ClInclude Include="..\include\umsreg.h" />
+    <ClInclude Include="..\include\umsrollcall.h" />
+    <ClInclude Include="..\include\umsstackinterface.h" />
+    <ClInclude Include="..\include\umsvmp.h" />
+    <ClInclude Include="..\include\vmpserviecehandler.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9D1B2BE2-3214-451C-B2FC-87B17E528ACA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>umscall</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_USE_XMPUEQP_;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\debug\win32_2010\umscall.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;_USE_XMPUEQP_;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\release\win32_2010\umscall.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

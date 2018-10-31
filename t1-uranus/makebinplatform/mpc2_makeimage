@@ -1,0 +1,79 @@
+file1=../../10-common/version/release/linux_ppc_82xx/apploader/apploader
+file2=./mpc2_autorun.inf
+file3=../../10-common/version/release/linux_ppc_82xx/umsserver
+file4=../../10-common/version/release/os_linux/mpc2/update.linux
+file5=../../10-common/version/release/os_linux/mpc2/u-boot.bin
+file6=./nip.sh
+file7=./kdvlog.ini
+file8=../../10-common/version/release/linux_ppc_82xx/kdvlogserver
+#file9=./mpc2_restartshell
+#file10=../../10-common/version/release/linux_ppc_82xx/umsmpc
+file11=../../10-common/version/release/linux_ppc_82xx/umcwebserver/umcwebserver.fcgi
+file12=./umcwebclient.tar
+file13=./httpd-2.4.25-ppc82xx/apache.tar
+file14=../../10-common/version/release/linux_ppc_82xx/umcwebserver/httpd.conf
+file15=./mpc2_selfupdate.sh
+file16=../common/stllib/82xx/libstdc++.so.5
+file17=../../10-common/version/release/linux_ppc_82xx/ntpd
+file18=../../10-common/version/release/linux_ppc_82xx/ntpdate
+file19=./ntp.conf
+file20=./startntp.sh
+file21=./mpc2_calcthread.sh
+file22=./sbin-mpc2.tar.gz
+file23=./telnetportonoff.sh
+
+[ -d ./umcwebclient ] && rm -rf ./umcwebclient
+[ -f ./umcwebclient.tar ] && rm -rf ./umcwebclient.tar
+
+cp -fr ../../10-common/version/release/linux_ppc_82xx/umcwebclient ./
+tar -cf umcwebclient.tar ./umcwebclient
+
+f1=1
+for file in $file1 $file2 $file3 $file4 $file5 $file6 $file7 $file8 $file11 $file12 $file13 $file14 $file15 $file16 $file17 $file18 $file19 $file20 $file21 $file22 $file23
+do
+
+if [ ! -f $file ]
+then
+f1=0
+echo err : $file not exist
+echo err : $file not exist > err.txt
+fi
+done
+
+if [ $f1 = 1 ]
+then
+
+
+[ -d ./tp ] && rm -rf ./tp
+mkdir tp
+
+for file in $file1 $file3 $file6 $file7 $file8 $file11 $file12 $file13 $file14 $file16 $file17 $file18 $file19 $file20 $file21 $file22 $file23
+do
+cp -f $file ./tp/
+done
+
+cp -f $file2 ./tp/autorun.inf
+cp -f $file15 ./tp/selfupdate.sh
+
+chmod 777 -R tp/*
+
+
+./mkyaffs2image ./tp mpc.image convert
+sleep 3
+./mkos -i $file4 -a mpc.image -b $file5 -v "$4.6.1 version:@pid:0x043D@pid:0x04DE" -o mpc2-tp.bin
+
+cp -f mpc2-tp.bin ../../10-common/version/release/linux_ppc_82xx/mpc2-tp.bin
+gzip mpc2-tp.bin
+mv -f mpc2-tp.bin.gz ../../10-common/version/release/linux_ppc_82xx/mpc2-tp.bin.gz
+
+rm -rf mpc.image
+rm -rf tp
+rm -fr umcwebclient
+rm -fr umcwebclient.tar
+
+else
+
+rm -fr umcwebclient
+rm -fr umcwebclient.tar
+
+fi

@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd /usr/bin/mpu2ep 
+./boot_ep $1 u-boot.bin boot.scr linux.ios  kernel.img

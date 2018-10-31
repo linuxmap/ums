@@ -1,0 +1,57 @@
+file1=../../10-common/version/release/linux_ppc_82xx/apploader/apploader
+file2=./cri2_autorun.inf
+file3=../../10-common/version/release/linux_ppc_82xx/umsmediatrans
+file4=../../10-common/version/release/os_linux/cri2/update.linux
+file5=../../10-common/version/release/os_linux/cri2/u-boot.bin
+file6=../../10-common/version/release/linux_ppc_82xx/ntpd
+file7=../../10-common/version/release/linux_ppc_82xx/ntpdate
+file8=./cri2_selfupdate.sh
+file9=./ntp.conf
+file10=./startntp.sh
+file11=./cri2_calcthread.sh
+file12=./sbin-cri2.tar.gz
+file13=./telnetportonoff.sh
+
+f1=1
+for file in $file1 $file2 $file3 $file4 $file5 $file6 $file7 $file8 $file9 $file10 $file11 $file12 $file13
+do
+
+if [ ! -f $file ]
+then
+f1=0
+echo err : $file not exist
+echo err : $file not exist > err.txt
+fi
+done
+
+if [ $f1 = 1 ]
+then
+
+
+[ -d ./tp ] && rm -rf ./tp
+mkdir tp
+
+for file in $file1 $file3 $file6 $file7 $file9 $file10 $file11 $file12 $file13
+do
+cp -f $file ./tp/
+done
+
+cp -f $file2 ./tp/autorun.inf
+cp -f $file8 ./tp/selfupdate.sh
+
+chmod 777 -R tp/*
+
+
+./mkyaffs2image ./tp dsu.image convert
+sleep 3
+./mkos -i $file4 -a dsu.image -b $file5 -v "$4.6.1 version:@pid:0x043E@pid:0x04E1@pid:0x04E2" -o kdvdsu.bin
+
+cp -f kdvdsu.bin ../../10-common/version/release/linux_ppc_82xx/dsu-tp.bin
+gzip kdvdsu.bin
+mv -f kdvdsu.bin.gz ../../10-common/version/release/linux_ppc_82xx/dsu-tp.bin.gz
+
+
+rm -fr tp
+rm -f dsu.image
+
+fi

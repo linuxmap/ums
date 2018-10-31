@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+
+
+echo "================ compiling tpmsgmgr for linux debug ================"
+make -j4 -f makefile_linux clean debug 1>tpmsgmgr_linux_compile_debug.txt 2>&1
+mv tpmsgmgr_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling tpmsgmgr for linux release ================"
+make -j4 -f makefile_linux clean release 1>tpmsgmgr_linux_compile_release.txt 2>&1
+mv tpmsgmgr_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling tpmsgmgr_log4cplus for linux release ================"
+make -j4 -f makefile_linux_tpmsgmgr_log4_r clean release 1>tpmsgmgr_log4cplus_linux_compile_release.txt 2>&1
+mv tpmsgmgr_log4cplus_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+
+cd ../../

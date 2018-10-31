@@ -1,0 +1,16 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+
+
+echo "================ compiling umsboard for linux debug ================"
+make -j4 -f makefile_linux clean debug 1>umsboard_linux_compile_debug.txt 2>&1
+mv umsboard_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling umsboard for linux release ================"
+make -j4 -f makefile_linux clean release 1>umsboard_linux_compile_release.txt 2>&1
+mv umsboard_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+
+cd ../../

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A7AD9C6D-DC4B-4266-BFCE-7AC26F3FDEBE}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>log4cplus</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>..\..\..\10-common\lib\debug\win32_2010</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>..\..\..\10-common\lib\release\win32_2010</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;LOG4CPLUS_STATIC;INSIDE_LOG4CPLUS;_WIN32_WINNT=0x0501;NTDDI_VERSION=0x05010200;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp\log4cplus-1.2.0</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;LOG4CPLUS_STATIC;INSIDE_LOG4CPLUS;_WIN32_WINNT=0x0501;NTDDI_VERSION=0x05010200;_SCL_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_DEPRECATE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\..\10-common\include\tp\log4cplus-1.2.0</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\appender.cpp" />
+    <ClCompile Include="..\source\appenderattachableimpl.cpp" />
+    <ClCompile Include="..\source\asyncappender.cpp" />
+    <ClCompile Include="..\source\clfsappender.cpp" />
+    <ClCompile Include="..\source\clogger.cpp" />
+    <ClCompile Include="..\source\configurator.cpp" />
+    <ClCompile Include="..\source\connectorthread.cpp" />
+    <ClCompile Include="..\source\consoleappender.cpp" />
+    <ClCompile Include="..\source\cygwin-win32.cpp" />
+    <ClCompile Include="..\source\env.cpp" />
+    <ClCompile Include="..\source\factory.cpp" />
+    <ClCompile Include="..\source\fileappender.cpp" />
+    <ClCompile Include="..\source\fileinfo.cpp" />
+    <ClCompile Include="..\source\filter.cpp" />
+    <ClCompile Include="..\source\global-init.cpp" />
+    <ClCompile Include="..\source\hierarchy.cpp" />
+    <ClCompile Include="..\source\hierarchylocker.cpp" />
+    <ClCompile Include="..\source\layout.cpp" />
+    <ClCompile Include="..\source\lockfile.cpp" />
+    <ClCompile Include="..\source\log4judpappender.cpp" />
+    <ClCompile Include="..\source\logger.cpp" />
+    <ClCompile Include="..\source\loggerimpl.cpp" />
+    <ClCompile Include="..\source\loggingevent.cpp" />
+    <ClCompile Include="..\source\loggingmacros.cpp" />
+    <ClCompile Include="..\source\loglevel.cpp" />
+    <ClCompile Include="..\source\loglog.cpp" />
+    <ClCompile Include="..\source\logloguser.cpp" />
+    <ClCompile Include="..\source\mdc.cpp" />
+    <ClCompile Include="..\source\msttsappender.cpp" />
+    <ClCompile Include="..\source\ndc.cpp" />
+    <ClCompile Include="..\source\nteventlogappender.cpp" />
+    <ClCompile Include="..\source\nullappender.cpp" />
+    <ClCompile Include="..\source\objectregistry.cpp" />
+    <ClCompile Include="..\source\patternlayout.cpp" />
+    <ClCompile Include="..\source\pointer.cpp" />
+    <ClCompile Include="..\source\property.cpp" />
+    <ClCompile Include="..\source\queue.cpp" />
+    <ClCompile Include="..\source\rootlogger.cpp" />
+    <ClCompile Include="..\source\sleep.cpp" />
+    <ClCompile Include="..\source\snprintf.cpp" />
+    <ClCompile Include="..\source\socket-unix.cpp" />
+    <ClCompile Include="..\source\socket-win32.cpp" />
+    <ClCompile Include="..\source\socket.cpp" />
+    <ClCompile Include="..\source\socketappender.cpp" />
+    <ClCompile Include="..\source\socketbuffer.cpp" />
+    <ClCompile Include="..\source\stringhelper-clocale.cpp" />
+    <ClCompile Include="..\source\stringhelper-cxxlocale.cpp" />
+    <ClCompile Include="..\source\stringhelper-iconv.cpp" />
+    <ClCompile Include="..\source\stringhelper.cpp" />
+    <ClCompile Include="..\source\syncprims.cpp" />
+    <ClCompile Include="..\source\syslogappender.cpp" />
+    <ClCompile Include="..\source\threads.cpp" />
+    <ClCompile Include="..\source\timehelper.cpp" />
+    <ClCompile Include="..\source\tls.cpp" />
+    <ClCompile Include="..\source\version.cpp" />
+    <ClCompile Include="..\source\win32consoleappender.cpp" />
+    <ClCompile Include="..\source\win32debugappender.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

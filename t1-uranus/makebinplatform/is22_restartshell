@@ -1,0 +1,104 @@
+#!/bin/sh
+
+sleep 2
+
+#业务启动后，各业务的最小线程数，osp加主线程8个，业务app一个，sipadater用到kdvlog输出日志多一个
+#未注册到ums之前
+umssipadapternummin=10
+umsnetbufnummin=9
+
+#注册到ums后，线程数会增加
+umssipadapternumsucess=0
+umsnetbufnumsucess=0
+
+#define checkstatus fun
+checkstatus(){
+	checknum=0
+	while true
+	do
+	 #每3s,计算此时业务进程的线程数目
+	 sleep 3
+	 umssipadapternumcalc=$(ps | grep umssipadapter | grep -v grep | wc -l)
+	 umsnetbufnumcalc=$(ps | grep umsnetbuf | grep -v grep | wc -l)
+	 
+	 echo "checking..."
+	 echo "sipadapter calcnum is $umssipadapternumcalc, umssipadapter minnum is $umssipadapternummin"
+	 echo "netbuf calcnum is $umsnetbufnumcalc, umsnetbuf minnum is $umsnetbufnummin"
+	 
+	 if [ $umssipadapternumcalc -le $umssipadapternummin ]
+	 then
+		continue
+	 fi
+ 
+	 if [ $umsnetbufnumcalc -le $umsnetbufnummin ]
+	 then
+		continue
+	 fi
+	 
+	 let checknum++
+	 
+	 #检查两次，防止正好在注册过程中，取到一个中间值
+	 if [ $checknum -lt 2 ]
+	 then
+		continue
+	 fi
+	 
+	 umssipadapternumsucess=$umssipadapternumcalc
+	 umsnetbufnumsucess=$umsnetbufnumcalc
+	 
+	 break
+	done 
+	
+	echo "sipadapter sucessnum is $umssipadapternumsucess"
+	echo "netbuf sucessnum is $umsnetbufnumsucess"
+	echo "restartshell is working..."
+}
+
+#checking
+checkstatus
+
+# begin check...
+while true
+do
+
+#小于常用线程 说明有问题 需要重启 重启前需要确认杀死所有线程
+ umssipadapternum=$(ps | grep umssipadapter | grep -v grep | wc -l)
+ if [ $umssipadapternum -lt $umssipadapternumsucess ]
+ then
+   #保存当前线程信息和时间到文件中
+   echo "$(date) sipadapter sucessnum: $umssipadapternumsucess current: $umssipadapternum "
+   while [ $umssipadapternum -gt 0 ]
+   do
+   	#此时仍有存活线程 取得线程ID 强制杀死
+   	umssipadapterid=$(ps | grep umssipadapter | grep -v grep | sed -n '1'p | sed -re 's/[^0-9]*([0-9]*).*$/\1/;' )
+	#echo "kill umssipadapterid: $umssipadapterid"
+   	kill -9 $umssipadapterid
+	umssipadapternum=$(ps | grep umssipadapter | grep -v grep | wc -l)
+	#echo "current: $umssipadapternum "
+   done
+   sleep 5
+   /usr/bin/umssipadapter &
+   sleep 2
+   checkstatus
+ fi 
+ 
+ umsnetbufnum=$(ps | grep umsnetbuf | grep -v grep | wc -l)
+ if [ $umsnetbufnum -lt $umsnetbufnumsucess ]
+ then
+   #保存当前线程信息和时间到文件中
+   echo "$(date) netbuf sucessnum: $umsnetbufnumsucess current: $umsnetbufnum "
+   while [ $umsnetbufnum -gt 0 ]
+   do
+   	#此时仍有存活线程 取得线程ID 强制杀死
+   	umsnetbufid=$(ps | grep umsnetbuf | grep -v grep | sed -n '1'p | sed -re 's/[^0-9]*([0-9]*).*$/\1/;' )
+   	kill -9 $umsnetbufid
+	umsnetbufnum=$(ps | grep umsnetbuf | grep -v grep | wc -l)
+   done
+   sleep 5
+   /usr/bin/umsnetbuf &
+   sleep 2
+   checkstatus
+ fi
+ 
+ sleep 2
+done

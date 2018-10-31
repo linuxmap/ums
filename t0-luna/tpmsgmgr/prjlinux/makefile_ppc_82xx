@@ -1,0 +1,58 @@
+#=====================================================================
+# 说明：本makefile用来编译linux版本的mtsysapi各个库
+#---------------------------------------------------------------------
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+WORKSPACE  := $(shell pwd)
+
+#[编译器选择]
+#---------------------------------------------------------------------
+BDW_CC     := /opt/ppc/bin/ppc_82xx-gcc
+BDW_CC_PLUS:= /opt/ppc/bin/ppc_82xx-g++
+BDW_AR     := /opt/ppc/bin/ppc_82xx-ar
+BDW_STRIP  := /opt/ppc/bin/ppc_82xx-strip
+
+#[主编译选项，含宏定义、头文件路径]
+#---------------------------------------------------------------------
+BDW_CFLAGS := -fno-omit-frame-pointer -v -D_LINUX_ -D_PPC_82XX_ -DARCH=PPC \
+              -I$(WORKSPACE)/../../../10-common/include/platform \
+              -I$(WORKSPACE)/../../../10-common/include/system1 \
+              -I$(WORKSPACE)/../../../10-common/include/protocol \
+              -I$(WORKSPACE)/../../common/include \
+              -I$(WORKSPACE)/../../../10-common/include/tp \
+              -I$(WORKSPACE)/../include
+
+#[编译的源文件和生成的目标文件的依赖关系]
+#---------------------------------------------------------------------
+PRJ_FILES:= $(wildcard $(WORKSPACE)/../source/*.cpp )
+
+PRJ_OBJS := $(PRJ_FILES:$(WORKSPACE)/../source/%.cpp=$(WORKSPACE)/%.o)
+
+            
+#[生成的库的名字和路径指定]:
+#---------------------------------------------------------------------
+DEBUG_LIB_PATH   := $(WORKSPACE)/../../../10-common/lib/debug/linux_ppc_82xx
+RELEASE_LIB_PATH := $(WORKSPACE)/../../../10-common/lib/release/linux_ppc_82xx
+LIBNAME          := libtpmsgmgr.a
+
+
+
+all:	debug release
+
+debug:
+	cd $(DEBUG_LIB_PATH);    rm -f $(LIBNAME)
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a
+	$(BDW_CC) $(BDW_CFLAGS) -g $(PRJ_FILES) -c 
+	$(BDW_AR) crus $(LIBNAME) $(PRJ_OBJS)
+	mv -f $(LIBNAME) $(DEBUG_LIB_PATH)/$(LIBNAME)
+
+release:
+	cd $(RELEASE_LIB_PATH);  rm -f $(LIBNAME)   
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a
+	$(BDW_CC) $(BDW_CFLAGS) -O2 $(PRJ_FILES) -c 
+	$(BDW_AR) crus $(LIBNAME) $(PRJ_OBJS)
+	mv -f $(LIBNAME) $(RELEASE_LIB_PATH)/$(LIBNAME)
+
+clean:
+	cd $(WORKSPACE);         rm -f *.o; rm -f *.a

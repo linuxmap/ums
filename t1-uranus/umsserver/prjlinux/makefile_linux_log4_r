@@ -1,0 +1,78 @@
+###
+### Copyright (c) 2004 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in OSP linux project.
+###
+#########################################################################
+
+TOP := ..
+
+COMM_DIR := ./
+
+SRC_DIR := $(TOP)/source
+
+CURDIR := ./
+
+## Name and type of the target for this Makefile
+
+APP_TARGET      := umsserver_log4cplus
+
+## Define debugging symbols
+DEBUG = 0
+LINUX_COMPILER= _REDHAT_
+PWLIB_SUPPORT = 0
+
+## Object files that compose the target(s)
+CFLAGS += -D_USE_LOG4CPLUS_ -D_JD_TMM_ -D_USE_XMPUEQP_ -m32
+LDFLAGS += -m32
+
+OBJS := $(SRC_DIR)/handlecallservice \
+				$(SRC_DIR)/handleconftemplateservice \
+				$(SRC_DIR)/handleregservice \
+				$(SRC_DIR)/tpumsmain \
+				$(SRC_DIR)/umsobject \
+				$(SRC_DIR)/umsserver \
+				$(SRC_DIR)/handletoolservice \
+				$(SRC_DIR)/handlehduservice \
+				$(SRC_DIR)/handleboardservice \
+				$(SRC_DIR)/testcommand \
+				$(SRC_DIR)/handlelicense \
+				$(SRC_DIR)/umshdu
+
+
+
+## Libraries to include in shared object file
+
+##kdvum osp kdvsys rt pthread
+LIBS :=  umsue umscall umsapi umsconfig umseqp kdvaddrbook umsmsg tpmsgmgr_log4cplus tpaddrmgr kdvlog xmlengine commonapi tinyxml templatecfg readlicenselib kdvencrypt\
+kdvum lanman osp kdvsys rt pthread log4cplusclientdll xmpueqp mediaclient rabbitmqwrap \
+event_core event_extra event_pthreads jansson mysqlclient rabbitmq_r \
+
+
+LIB_PATH = $(CURDIR)/../../../10-common/lib/release/linux
+
+## Add driver-specific include directory to the search path
+
+INC_PATH += $(CURDIR) $(CURDIR)/../include \
+	    $(CURDIR)/../../../10-common/include/platform \
+	    $(CURDIR)/../../../10-common/include/system1 \
+	    $(CURDIR)/../../../10-common/include/protocol \
+      $(CURDIR)/../../../10-common/include/tp \
+      $(CURDIR)/../../../10-common/include/cbb/license \
+      $(CURDIR)/../../common/tp \
+      $(CURDIR)/../include \
+      $(CURDIR)/../../../10-common/include/protocol/tp \
+      $(CURDIR)/../../../10-common/include/cbb/tinyxml \
+
+ifeq ($(PWLIB_SUPPORT),1)
+   INC_PATH += $(PWLIBDIR)/include/ptlib/unix $(PWLIBDIR)/include
+endif
+
+INSTALL_APP_PATH = $(CURDIR)/../../../10-common/version/release/linux
+
+include $(COMM_DIR)/common.mk
+

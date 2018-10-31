@@ -1,0 +1,8 @@
+cd prj_linux
+echo cd prj_linux 
+
+./compile_linux
+
+cd ..
+echo cd ..
+

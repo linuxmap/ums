@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd prjlinux
+
+echo "================ compiling umsmpc for ppc_82xx_debug ================"
+make -f makefile_ppc_82xx clean debug 1>umsmpc_ppc82xx_d.txt 2>&1
+mv umsmpc_ppc82xx_d.txt ../../../10-common/version/compileinfo/ -f
+
+
+echo "================ compiling umsmpc for ppc_82xx_release ================"
+make -f makefile_ppc_82xx clean release 1>umsmpc_ppc82xx_r.txt 2>&1
+mv umsmpc_ppc82xx_r.txt ../../../10-common/version/compileinfo/ -f
+
+cd ..

@@ -1,0 +1,64 @@
+###
+### Copyright (c) 2004 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in OSP linux project.
+###
+#########################################################################
+
+TOP := ..
+
+COMM_DIR := ./
+
+SRC_DIR := $(TOP)/source
+
+CURDIR := ./
+
+## Name and type of the target for this Makefile
+
+APP_TARGET      := regserver
+
+## Define debugging symbols
+DEBUG = 1
+LINUX_COMPILER= _REDHAT_
+PWLIB_SUPPORT = 0
+
+## Object files that compose the target(s)
+
+OBJS := $(SRC_DIR)/regoprdb \
+				$(SRC_DIR)/regserver \
+				$(SRC_DIR)/regstackin \
+				$(SRC_DIR)/regstackout \
+				$(SRC_DIR)/stackmsgconvert 
+				
+CFLAGS +=  -D__REDHAT__
+CFLAGS +=  -DRV_DEBUG -D_ENABLE_QUANTUM_PROJECT_ -m32
+LDFLAGS += -m32
+
+
+## Libraries to include in shared object file
+
+LIBS := umsmsg tpmsgmgr kdvlog kdvsipadapter kdvsipstack kdvdatanet kdvencrypt xmlengine tinyxml kdvprotocommon lanman osp kdvsys rt pthread tpquantum umsapi
+
+LIB_PATH = $(CURDIR)/../../../10-common/lib/debug/linux
+
+## Add driver-specific include directory to the search path
+
+INC_PATH += $(CURDIR) $(CURDIR)/../include \
+	    $(CURDIR)/../../../10-common/include/platform \
+	    $(CURDIR)/../../../10-common/include/system1 \
+	    $(CURDIR)/../../../10-common/include/tp \
+	    $(CURDIR)/../../../10-common/include/protocol\
+		$(CURDIR)/../../../10-common/include/protocol/tp\
+	    $(CURDIR)/../../../10-common/include/protocol/sipstack\
+	    $(CURDIR)/../../../10-common/include/cbb/tinyxml\
+	    $(CURDIR)/../../common/tp
+
+
+INSTALL_APP_PATH = $(CURDIR)/../../../10-common/version/debug/linux
+
+include $(COMM_DIR)/common.mk
+

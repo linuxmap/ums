@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\adaptereqp.cpp" />
+    <ClCompile Include="..\source\audbaseqp.cpp" />
+    <ClCompile Include="..\source\audbashandler.cpp" />
+    <ClCompile Include="..\source\audiomixeqp.cpp" />
+    <ClCompile Include="..\source\audmixhandler.cpp" />
+    <ClCompile Include="..\source\baseqp.cpp" />
+    <ClCompile Include="..\source\eqpinst.cpp" />
+    <ClCompile Include="..\source\eqpinterface.cpp" />
+    <ClCompile Include="..\source\eqpmgr.cpp" />
+    <ClCompile Include="..\source\hdueqp.cpp" />
+    <ClCompile Include="..\source\hduhandler.cpp" />
+    <ClCompile Include="..\source\mcuboardmgr.cpp" />
+    <ClCompile Include="..\source\mcuinstdef.cpp" />
+    <ClCompile Include="..\source\mediatranseqp.cpp" />
+    <ClCompile Include="..\source\mpceqp.cpp" />
+    <ClCompile Include="..\source\mpu2tpeqp.cpp" />
+    <ClCompile Include="..\source\netbufeqp.cpp" />
+    <ClCompile Include="..\source\umseqp.cpp" />
+    <ClCompile Include="..\source\vmpeqp.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\adaptereqp.h" />
+    <ClInclude Include="..\include\audbaseqp.h" />
+    <ClInclude Include="..\include\audbashandler.h" />
+    <ClInclude Include="..\include\audiomixeqp.h" />
+    <ClInclude Include="..\include\audmixhandler.h" />
+    <ClInclude Include="..\include\baseqp.h" />
+    <ClInclude Include="..\include\eqpinst.h" />
+    <ClInclude Include="..\include\eqpmgr.h" />
+    <ClInclude Include="..\include\hdudef.h" />
+    <ClInclude Include="..\include\hdueqp.h" />
+    <ClInclude Include="..\include\hduhandler.h" />
+    <ClInclude Include="..\include\mcuboardmgr.h" />
+    <ClInclude Include="..\include\mcudef.h" />
+    <ClInclude Include="..\include\mcuinstdef.h" />
+    <ClInclude Include="..\include\mediatranseqp.h" />
+    <ClInclude Include="..\include\mpceqp.h" />
+    <ClInclude Include="..\include\mpu2tpeqp.h" />
+    <ClInclude Include="..\include\netbufeqp.h" />
+    <ClInclude Include="..\include\servicehandler.h" />
+    <ClInclude Include="..\include\umseqp.h" />
+    <ClInclude Include="..\include\vmpeqp.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{A29AB26D-A6A5-4A74-BD1C-0B942CFBD0DA}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>umseqp</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\debug\win32_2010\umseqp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\include;..\..\common\tp;..\..\..\10-common\include\tp;..\..\..\10-common\include\system1;..\..\..\10-common\include\platform;..\..\..\10-common\include\protocol;..\..\..\10-common\include\protocol\tp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <OutputFile>..\..\..\10-common\lib\release\win32_2010\umseqp.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

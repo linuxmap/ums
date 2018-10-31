@@ -1,0 +1,1 @@
+"localxmlparse.exe" "..\..\10-common\include\tp\cnstype.h" "NULL" "..\..\10-common\include\tp\tpxmltype.h" "..\..\10-common\include\tp\cnsstruct.h" "NULL" "..\..\t2-jupiter\cnmsg\source\tpxmlstruct.cpp" 

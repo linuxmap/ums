@@ -1,0 +1,58 @@
+#=====================================================================
+# 说明：本makefile用来编译linux版本的mtsysapi各个库
+#---------------------------------------------------------------------
+
+#[指定当前路径为工作路径]
+#---------------------------------------------------------------------
+CURDIR  := .
+
+#[编译器选择]
+#---------------------------------------------------------------------
+BDW_CC     := g++
+BDW_AR     := ar
+
+#[主编译选项，含宏定义、头文件路径]
+#---------------------------------------------------------------------
+CFLAGS   += -fno-omit-frame-pointer -v -D_LINUX_ -D_HD2G_ -m32
+INC_PATH += $(CFLAGS) \
+              -I$(CURDIR)/../../../10-common/include/platform \
+              -I$(CURDIR)/../../../10-common/include/nms1 \
+              -I$(CURDIR)/../../../10-common/include/system1 \
+              -I$(CURDIR)/../../../10-common/include/protocol \
+              -I$(CURDIR)/../../../10-common/include/tp \
+              -I$(CURDIR)/../../common/tp\
+              -I$(CURDIR)/../include
+
+#[编译的源文件和生成的目标文件的依赖关系]
+#---------------------------------------------------------------------
+SRCS:= $(wildcard $(CURDIR)/../source/*.cpp )
+
+OBJS := $(SRCS:$(CURDIR)/../source/%.cpp=$(CURDIR)/%.o)
+
+            
+#[生成的库的名字和路径指定]:
+#---------------------------------------------------------------------
+DEBUG_LIB_PATH   := $(CURDIR)/../../../10-common/lib/debug/linux
+RELEASE_LIB_PATH := $(CURDIR)/../../../10-common/lib/release/linux
+LIBNAME          := libumsmsg.a
+
+
+
+all:	debug release
+
+debug:
+	cd $(DEBUG_LIB_PATH);    rm -f $(LIBNAME)
+	cd $(CURDIR);         rm -f *.o; rm -f *.a
+	$(BDW_CC) $(INC_PATH) -g $(SRCS) -c 
+	$(BDW_AR) crus $(LIBNAME) $(OBJS)
+	mv -f $(LIBNAME) $(DEBUG_LIB_PATH)/$(LIBNAME)
+
+release:
+	cd $(RELEASE_LIB_PATH);  rm -f $(LIBNAME)   
+	cd $(CURDIR);         rm -f *.o; rm -f *.a
+	$(BDW_CC) $(INC_PATH) -O2 $(SRCS) -c 
+	$(BDW_AR) crus $(LIBNAME) $(OBJS)
+	mv -f $(LIBNAME) $(RELEASE_LIB_PATH)/$(LIBNAME)
+
+clean:
+	cd $(CURDIR);         rm -f *.o; rm -f *.a

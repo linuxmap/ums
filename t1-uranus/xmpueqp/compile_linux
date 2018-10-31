@@ -1,0 +1,14 @@
+#!/bin/sh
+
+cd ./prjlinux
+
+echo "================ compiling xmpueqp for linux debug ================"
+make -j4 -f makefile_linux clean debug 1>xmpueqp_linux_compile_debug.txt 2>&1
+mv xmpueqp_linux_compile_debug.txt ../../../10-common/version/compileinfo/ -f
+
+echo "================ compiling xmpueqp for linux release ================"
+make -j4 -f makefile_linux clean release 1>xmpueqp_linux_compile_release.txt 2>&1
+mv xmpueqp_linux_compile_release.txt ../../../10-common/version/compileinfo/ -f
+
+
+cd ../../

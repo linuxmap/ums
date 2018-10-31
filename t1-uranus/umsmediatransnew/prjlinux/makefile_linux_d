@@ -1,0 +1,64 @@
+###
+### Copyright (c) 2004 Keda Telecom, Inc.
+###
+
+#########################################################################
+###
+###  DESCRIPTION:
+###    Common definitions for all Makefiles in OSP linux project.
+###
+#########################################################################
+
+TOP := ..
+
+COMM_DIR := ./
+
+SRC_DIR := $(TOP)/source
+
+CURDIR := ./
+
+## Name and type of the target for this Makefile
+
+APP_TARGET      := umsmediatransnew
+
+## Define debugging symbols
+DEBUG = 1
+LINUX_COMPILER= _REDHAT_
+PWLIB_SUPPORT = 0
+
+## Object files that compose the target(s)
+CFLAGS +=  -m32
+LDFLAGS += -m32
+
+OBJS := $(SRC_DIR)/mediatranscfg \
+				$(SRC_DIR)/mediatransinst \
+				$(SRC_DIR)/mpdata \
+				$(SRC_DIR)/mediatransmain
+
+
+## Libraries to include in shared object file
+
+LIBS :=  umsapi umsmsg tpmsgmgr kdvlog xmlengine tinyxml dataswitch kdvsrtp kdcrypto kdssl osp kdvsys rt pthread 
+
+LIB_PATH = $(CURDIR)/../../../10-common/lib/debug/linux
+
+## Add driver-specific include directory to the search path
+
+INC_PATH += $(CURDIR) $(CURDIR)/../include \
+	    $(CURDIR)/../../../10-common/include/platform \
+	    $(CURDIR)/../../../10-common/include/system1 \
+	    $(CURDIR)/../../../10-common/include/protocol \
+      $(CURDIR)/../../../10-common/include/tp \
+      $(CURDIR)/../../common/tp \
+      $(CURDIR)/../include \
+      $(CURDIR)/../../../10-common/include/protocol/tp \
+      $(CURDIR)/../../../10-common/include/cbb/tinyxml
+
+ifeq ($(PWLIB_SUPPORT),1)
+   INC_PATH += $(PWLIBDIR)/include/ptlib/unix $(PWLIBDIR)/include
+endif
+
+INSTALL_APP_PATH = $(CURDIR)/../../../10-common/version/debug/linux
+
+include $(COMM_DIR)/common.mk
+
